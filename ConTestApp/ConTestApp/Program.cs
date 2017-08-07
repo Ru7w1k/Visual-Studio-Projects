@@ -12,6 +12,7 @@ namespace ConTestApp
         {
             Console.WriteLine("Hello World From C#!");
             Console.Read();
+            // This is added to github
         }
     }
 }
