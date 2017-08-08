@@ -8,7 +8,6 @@ namespace ConTestApp
 {
     class Program
     {
-
         public int MyProperty { get; set; }
 
         static void Main(string[] args)
