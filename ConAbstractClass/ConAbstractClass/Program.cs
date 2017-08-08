@@ -38,7 +38,8 @@ namespace ConAbstractClass
             baseClass.MyMethod();
 
             baseClass = new BaseClass();
-            baseClass.MyMethod();
+            baseClass.MyMethod();           
+            
         }
     }
 }
