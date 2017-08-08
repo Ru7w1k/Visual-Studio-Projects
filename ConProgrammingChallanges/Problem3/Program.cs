@@ -8,7 +8,10 @@ namespace Problem3
 {
     public class Notify
     {
-        public virtual void NotifyUser() { }
+        public virtual void NotifyUser()
+        {
+            Console.WriteLine("Notify Method Unknown");
+        }                  
     }
 
     public class NotifySMS : Notify
@@ -48,18 +51,11 @@ namespace Problem3
                     break;
 
                 default:
-                    Console.WriteLine("Invalid Number");                    
+                    notify = new Notify();                    
                     break;
             }
 
-            if(notify != null)
-            {
-                notify.NotifyUser();
-            }
-            
-
-
-
+            notify.NotifyUser();           
         }
     }
 }
