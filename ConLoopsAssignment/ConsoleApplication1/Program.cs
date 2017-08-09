@@ -13,6 +13,12 @@ namespace ConsoleApplication1
             Console.WriteLine("Enter the string: ");
             string str = Console.ReadLine();
 
+            if(str == "")
+            {
+                Console.WriteLine("Empty String");
+                return;
+            }
+            
             Program p = new Program();
 
             if(p.IsPalindrome(str))

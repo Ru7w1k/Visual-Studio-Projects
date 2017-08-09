@@ -25,7 +25,7 @@ namespace DuplicateRemoval
             }
 
             Console.Write("\nDuplicate Words : ");
-            foreach (var word in duplicates)
+            foreach (var word in duplicates.Distinct())
             {
                 Console.Write("{0} ", word);
             }
@@ -44,7 +44,8 @@ namespace DuplicateRemoval
                     if(words[i] == words[j])
                     {
                         duplicates.Add(words[i]);
-                        words.RemoveAt(j);                                               
+                        words.RemoveAt(j);
+                        j--;                                               
                     }
                 }
             }

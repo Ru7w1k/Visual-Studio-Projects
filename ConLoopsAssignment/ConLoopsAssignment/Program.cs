@@ -28,7 +28,7 @@ namespace ConLoopsAssignment
         {
             for(int i = 0; i < levels; i++)
             {
-                Console.WriteLine(string.Format("{0}{1}", new string(' ', levels - i), new string('*', i+1)));
+                Console.WriteLine("{0}{1}", new string(' ', levels - i), new string('*', i+1));
             }
         }
     }
