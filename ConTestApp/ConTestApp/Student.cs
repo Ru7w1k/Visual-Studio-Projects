@@ -8,6 +8,6 @@ namespace ConTestApp
 {
     class Student
     {
-                
+                        
     }
 }

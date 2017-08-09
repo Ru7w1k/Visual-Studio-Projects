@@ -14,6 +14,12 @@ namespace ConTestApp
         {
             Console.WriteLine("Hello World From C#!");
             Console.Read();
+
+            List<Student> students = new List<Student>();  
+                       
         }
+
+        
+
     }
 }
