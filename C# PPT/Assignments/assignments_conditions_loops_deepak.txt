@@ -1,0 +1,168 @@
+1. Write a C# program to that takes a number as input and display it four times in a row (separated by blank spaces), and then four times in the next row, with no separation. You should do it two times: Use Console. Write and then use {0}
+Test Data:
+Enter a digit: 25 
+Expected Output:
+25 25 25 25 
+25252525 
+25 25 25 25 
+25252525
+
+
+2. Write a C# program that takes a number as input and then displays a rectangle of 3 columns wide and 5 rows tall using that digit. Go to the editor
+Test Data:
+Enter a number: 5 
+Expected Output:
+555 
+5 5
+5 5 
+5 5 
+555
+
+
+3. Write a C# program to convert from celsius degrees to Fahrenheit.
+Test Data:
+Enter the amount of celsius: 30
+Expected Output:
+Fahrenheit = 86
+
+4. Write a C# program to find the longest word in a string.
+Test Data: Write a C# Sharp Program to display the following pattern using the alphabet.
+Sample Output:
+following
+
+5. Write a C# program to compute the sum of the first 1000 prime numbers.
+Sample Output:
+Sum of the first 1000 prime numbers:
+3682913 
+
+6. Write a C# program and compute the sum of the digits of an integer.
+Sample Output:
+Input a number(integer): 12
+Sum of the digits of the said integer: 3 
+
+7. Write a C# program to reverse the words of a sentence.
+Sample Output:
+Original String: Display the pattern like pyramid using the alphabet.
+Reverse String: alphabet. the using pyramid like pattern the Display
+
+
+8. Write a C# Sharp program to find whether a given year is a leap year or not.
+Test Data : 2016 
+Expected Output :
+2016 is a leap year.
+
+9. Write a C# Sharp program to find the largest of three numbers.
+Test Data :
+Input the 1st number :25 	
+Input the 2nd number :63 
+Input the 3rd number :10 
+Expected Output :
+The 2nd Number is the greatest among three 
+
+10. Write a C# Sharp program to read temperature in centigrade and display a suitable message according to temperature state below :
+Temp < 0 then Freezing weather 
+Temp 0-10 then Very Cold weather
+Temp 10-20 then Cold weather
+Temp 20-30 then Normal in Temp 
+Temp 30-40 then Its Hot 
+Temp >=40 then Its Very Hot 
+Test Data : 
+42 
+Expected Output :
+Its very hot.
+
+11. Write a C# Sharp program to check whether an alphabet is a vowel or consonant.
+Test Data : 
+k
+Expected Output :
+The alphabet is a consonant.
+
+
+12. Write a program in C# Sharp to calculate and print the Electricity bill of a given customer. The customer id., name and unit consumed by the user should be taken from the keyboard and display the total amount to pay to the customer. The charge are as follow :
+
+Unit	Charge/unit
+upto 199	@1.20
+200 and above but less than 400	@1.50
+400 and above but less than 600	@1.80
+600 and above	@2.00
+If bill exceeds Rs. 400 then a surcharge of 15% will be charged and the minimum bill should be of Rs. 100/-
+
+Test Data : 
+1001
+James 
+800 
+Expected Output :
+Customer IDNO :1001 
+Customer Name :James 
+unit Consumed :800 
+Amount Charges @Rs. 2.00 per unit : 1600.00 
+Surchage Amount : 240.00 
+Net Amount Paid By the Customer : 1840.00
+
+
+13. Write a program in C# Sharp which is a Menu-Driven Program to perform a simple calculation.
+
+Test Date and Expected Output 
+Enter the first Integer :10 
+Enter the second Integer :2 
+
+Here are the options : 
+1-Addition. 
+2-Substraction. 
+3-Multiplication. 
+4-Division. 
+5-Exit. 
+
+Input your choice :3 
+The Multiplication of 10 and 2 is: 20
+
+
+14. Write a C# Sharp program that takes a number and a width also a number, as input and then displays a triangle of that width, using that number.
+Test Data
+Enter a number: 6 
+Enter the desired width: 6 
+Expected Output :
+
+666666                                                      
+66666                                                           
+6666                                                                  
+666                                                        
+66                                                                  
+6 
+
+
+15. Write a program in C# Sharp to display the cube of the number upto given an integer.
+Test Data :
+Input number of terms : 5 
+Expected Output : 
+Number is : 1 and cube of the 1 is :1 
+Number is : 2 and cube of the 2 is :8 
+Number is : 3 and cube of the 3 is :27 
+Number is : 4 and cube of the 4 is :64 
+Number is : 5 and cube of the 5 is :125
+
+
+16. Write a program in C# Sharp to display the pattern like a diamond.
+
+    * 
+   *** 
+  *****
+ *******
+*********
+ *******
+  *****
+   ***
+    * 
+
+
+17. Write a program in C# Sharp to display the such a pattern for n number of rows using a number which will start with the number 1 and the first and a last number of each row will be 1.
+
+  1
+ 121
+12321
+
+18. Write a program in C# Sharp to convert a decimal number into binary without using an array.
+Test Data : 
+Enter a number to convert : 25 
+Expected Output :
+The Binary of 25 is 11001.

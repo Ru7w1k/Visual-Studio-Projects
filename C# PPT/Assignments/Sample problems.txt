@@ -1,0 +1,17 @@
+1. Write a program to create below symbol based on no. of levels using while loop by sending 
+
+     	     *
+	    **
+	   ***
+          ****
+         *****
+        ******
+       *******
+      ********
+
+2. Check whether the inputed string is Palindrome or not?
+
+3. From given sentence find the duplicate words and delete them and print in the corrected string 
+in console.
+
+"Yellow is the color of Yellow lamp."
