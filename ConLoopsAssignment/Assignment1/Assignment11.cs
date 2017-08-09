@@ -13,7 +13,7 @@ namespace Assignments
             Console.WriteLine("Enter Character: ");
             char ch;
             char[] vowels = { 'a', 'e', 'i', 'o', 'u'};
-            if(char.TryParse(Console.ReadLine().ToString().ToLower(), out ch))
+            if(char.TryParse(Console.ReadLine().ToLower(), out ch))
             {
                 Console.WriteLine();
                 if(ch < 'a' || ch > 'z')

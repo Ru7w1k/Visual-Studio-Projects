@@ -46,6 +46,13 @@
     <Compile Include="Assignment1.cs" />
     <Compile Include="Assignment10.cs" />
     <Compile Include="Assignment11.cs" />
+    <Compile Include="Assignment12.cs" />
+    <Compile Include="Assignment13.cs" />
+    <Compile Include="Assignment14.cs" />
+    <Compile Include="Assignment15.cs" />
+    <Compile Include="Assignment16.cs" />
+    <Compile Include="Assignment17.cs" />
+    <Compile Include="Assignment18.cs" />
     <Compile Include="Assignment2.cs" />
     <Compile Include="Assignment3.cs" />
     <Compile Include="Assignment4.cs" />

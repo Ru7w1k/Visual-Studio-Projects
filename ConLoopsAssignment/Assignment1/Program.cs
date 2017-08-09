@@ -37,13 +37,33 @@ namespace Assignments
             //Assignment9 assignment9 = new Assignment9();
             //assignment9.GreatestNumber();
 
-            
+
             //Assignment10 assignment10 = new Assignment10();
             //assignment10.DisplayMsg();
 
-            Assignment11 assignment11 = new Assignment11();
-            while(true)
-            assignment11.IsVowel();
+            //Assignment11 assignment11 = new Assignment11();
+            //assignment11.IsVowel();
+
+            //Assignment12 assignment12 = new Assignment12();
+            //assignment12.ElectricityBill();
+
+            //Assignment13 assignment13 = new Assignment13();
+            //assignment13.Calc();
+
+            //Assignment14 assignment14 = new Assignment14();
+            //assignment14.DrawPattern();
+
+            //Assignment15 assignment15 = new Assignment15();
+            //assignment15.DisplayCube();
+
+            //Assignment16 assignment16 = new Assignment16();
+            //assignment16.PrintDiamond();
+
+            //Assignment17 assignment17 = new Assignment17();
+            //assignment17.NumberPattern();
+
+            Assignment18 assignment18 = new Assignment18();
+            assignment18.ToBinary();
 
             Console.Read();
         }
