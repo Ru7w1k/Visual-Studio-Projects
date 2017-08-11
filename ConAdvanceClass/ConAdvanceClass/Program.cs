@@ -23,7 +23,10 @@ namespace ConAdvanceClass
             {
                 Console.WriteLine(num);
             }
-            
+
+            string str = "test";
+            str.Where()
+
             Console.WriteLine("Area: {0}", Rectangle.Area(45.26, 123.15));
 
             IEmployee emp = new PartTimeEmp();

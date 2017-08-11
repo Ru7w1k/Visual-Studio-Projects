@@ -19,7 +19,7 @@ namespace ConAdvanceClass
             Console.WriteLine("Salary of PartTime Emp");
             return 1000;
         }
-
+        
         public void Display()
         {
             Console.WriteLine("PartTime Employee");
