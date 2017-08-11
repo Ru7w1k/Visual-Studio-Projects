@@ -24,10 +24,14 @@ namespace ConSwap
             //int num = Convert.ToInt32(Console.ReadLine());
             //p.PrintTable(num);
 
-            Console.WriteLine("Enter a string: ");
-            string str = Console.ReadLine();
-            str = p.RemoveVowels(str);
-            Console.WriteLine(str);
+            //Console.WriteLine("Enter a string: ");
+            //string str = Console.ReadLine();
+            //str = p.RemoveVowels(str);
+            //Console.WriteLine(str);
+
+            //string stTes = "TESt";
+            //stTes = stTes.Remove(0, 1);
+            //Console.WriteLine("string " + stTes);
 
             Console.Read();
         }
@@ -51,10 +55,10 @@ namespace ConSwap
         {
             StringBuilder strRes = new StringBuilder();
 
-            foreach (char ch in str.Where(a => !vowels.Contains(a)))
-            {
-                Console.Write(ch);
-            }
+            //foreach (char ch in str.Where(a => !vowels.Contains(a)))
+            //{
+            //    Console.Write(ch);
+            //}
 
             Console.WriteLine();
 
@@ -65,8 +69,9 @@ namespace ConSwap
                     strRes.Append(str[i]);
                     //Console.Write(str[i]);
                 }
-            }                
+            }
 
+            
             return strRes.ToString();
         }
 
