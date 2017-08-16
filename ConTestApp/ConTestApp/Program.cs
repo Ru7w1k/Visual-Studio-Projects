@@ -62,8 +62,8 @@ namespace ConTestApp
 
         static void Main(string[] args)
         {
-            int a = int.MaxValue;
-            int c = a * a;
+            //int a = int.MaxValue;
+            //int c = a * a;
 
             //Test1 test1 = new Test1();
             //string str = "TSTSETSETS";
@@ -105,13 +105,13 @@ namespace ConTestApp
             //Console.WriteLine("x == y: " + (x == y));
             //Console.WriteLine("x.Equals(x): " + x.Equals(x));
 
-            BaseClass derivedObj = new DerivedClass();
-            BaseClass baseObj = new BaseClass();
+            //BaseClass derivedObj = new DerivedClass();
+            //BaseClass baseObj = new BaseClass();
 
-            derivedObj.BaseProp = "test";
+            //derivedObj.BaseProp = "test";
 
 
-            DerivedClass derived1 = (DerivedClass)derivedObj;
+            //DerivedClass derived1 = (DerivedClass)derivedObj;
             //DerivedClass derived2 = (DerivedClass)baseObj;
 
             //if (a is Test1)
@@ -123,11 +123,11 @@ namespace ConTestApp
             //    Console.WriteLine("A is not Int");
             //}
 
-            Method1();
+            //Method1();
 
             //Console.WriteLine(c);
-            Console.Read();
-            
+            //Console.Read();
+
             //checked
             //{
             //    Console.WriteLine("Inside Checked");
@@ -149,6 +149,12 @@ namespace ConTestApp
             //    Console.WriteLine(e.Message);
             //}
 
+            Celcius c = new Celcius(27);
+            Fahrenheit f = (Fahrenheit)c;
+            f = new Fahrenheit(100);
+            c = (Celcius)f;
+
+            Console.WriteLine("C: {0}\nF: {1}", c.Degrees, f.Degrees);
 
             Console.Read();
         }

@@ -1,0 +1,34 @@
+Hi Team,
+ 
+Please circulate this with everyone.
+ 
+Assignment for today. Please acknowledge me once you receive the mail:
+ 
+Example1:
+ 
+Create a single cast delegate CalculateSimpleInterest and use the reference of the getTotalInterest method.
+GetTotalInterest will do the simple interest calculation based on Principal, Rate and year properties.
+Extend this single cast delegate into Multi cast delegate by referencing more method getInterestRatePerYear.
+ 
+Try creating delegates using below:
+Using Func and Action.
+Using Anonymous methods.
+Using lambda expressions.
+ 
+Example2:
+ 
+Implement the Events by referring this link https://www.codeproject.com/Articles/11541/The-Simplest-C-Events-Example-Imaginable.
+Even though the code is mentioned in the link please first understand the code and then try to implement by your own. It’s very easy example.
+ 
+Example3:
+ 
+Create a class Employee with following properties { ID, Name, DepartmentName, ProjectName}
+Create a Employee Collection using List<Employee>.
+Perform different Lambda operation using Where, Select, Any, Group by, Find and many more.
+Find below the list of lambda operation for more understanding.
+http://www.c-sharpcorner.com/UploadFile/0f68f2/using-lambda-expression-over-a-list-in-C-Sharp/
+ 
+References:
+ 
+https://www.slideshare.net/raghu2314/c-session-8
+http://www.c-sharpcorner.com/uploadfile/Ashush/events-in-C-Sharp/

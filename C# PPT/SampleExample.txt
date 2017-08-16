@@ -1,0 +1,98 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Xml.Linq;
+
+namespace DemoApplication_0809
+{
+    class Program
+    {
+        //Declare the delegate
+        public delegate void TestDelegate(string s);
+
+        static void Main(string[] args)
+        {
+            Program p = new Program();
+
+            CallDelegates(p);
+
+        }
+
+        private static void CallDelegates(Program p)
+        {
+
+            List<Student> studentList = new List<Student>();
+            studentList.Add(new Student
+            {
+                RollNo = 1,
+                Name = "ABC"
+            });
+            studentList.Add(new Student
+            {
+                RollNo = 2,
+                Name = "DEF"
+            });
+
+            var emplList = studentList.Any(c => c.RollNo == 1);
+            var student = studentList.Where(c => c.RollNo == 1).Select(c => new
+            {
+                customName = "ABC",
+                customRollNo = c.RollNo
+            }).FirstOrDefault();
+
+            //Using Instance method
+            TestDelegate d0 = new TestDelegate(p.ImplementDelegate);
+            d0 += new TestDelegate(p.ImplementDelegate1);
+
+            d0("Unknown");
+            d0 -= p.ImplementDelegate;
+            d0("Unknown");
+            //Using Anonomyous method
+            TestDelegate d1 = delegate(string s)
+            {
+                Console.WriteLine(string.Format("Hello {0} from Anonomyous method", s));
+
+            };
+            d1("ABC");
+
+            //using lamda expression
+            TestDelegate d2 = n =>
+            {
+                Console.WriteLine(string.Format("Hello {0} from lambda method", n));
+            };
+
+            d2("DEF");
+        }
+
+        public void ImplementDelegate(string s)
+        {
+            Console.WriteLine(string.Format("Hello {0} from instance method", s));
+        }
+
+        public void ImplementDelegate1(string s)
+        {
+            Console.WriteLine(string.Format("Hello {0} from ImplementDelegate1 method", s));
+        }
+
+        public static void ProcessXML()
+        {
+            var xml = XDocument.Load(@"C:\Users\dnema\Desktop\XMLFile1.xml");
+
+            // Query the data and write out a subset of contacts
+            var loanAssociateEmail = xml.Root.Descendants("SystemLog").Descendants("Record").Attributes("LoanAssociateEmail").FirstOrDefault().Value;
+
+            //foreach (string name in query)
+            //{
+            //    Console.WriteLine("Contact's Full Name: {0}", name);
+            //}
+        }
+    }
+
+    public class Student
+    {
+        public string Name { get; set; }
+        public int RollNo { get; set; }
+    }
+}
