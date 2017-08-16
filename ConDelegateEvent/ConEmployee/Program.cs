@@ -60,7 +60,21 @@ namespace ConEmployee
                 Console.WriteLine("Name: " + item.Name);
                 Console.WriteLine("Location: " + item.Location);
             };
-            
+
+            Console.WriteLine("\nAny Employee from Pro007? {0}", employees.Any(emp => emp.ProjectName == "Pro007"));
+
+            var groups = employees.GroupBy(emp => emp.ProjectName).Select(e => e.ToList()).ToList();
+            foreach (var grp in groups)
+            {
+                Console.WriteLine("Project Name: {0}", grp[0].ProjectName);
+                foreach (var item in grp)
+                {
+                    Console.WriteLine(item);
+                }
+            }
+
+            Console.WriteLine(employees.Find(e => e.Name == "Rut"));
+
 
 
             Console.Read();
