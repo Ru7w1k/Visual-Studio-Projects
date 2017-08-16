@@ -32,10 +32,12 @@ namespace ConEvents
             }
         }
     }
+
     public class Metronome
     {
-        public event TickHandler Tick;
         public delegate void TickHandler(Metronome m, TimeOfTick e);
+        public event TickHandler Tick;
+                
         public void Start()
         {
             while (true)
@@ -50,6 +52,7 @@ namespace ConEvents
             }
         }
     }
+
     public class Listener
     {
         public void Subscribe(Metronome m)
@@ -60,7 +63,6 @@ namespace ConEvents
         {
             System.Console.WriteLine("HEARD IT AT {0}", e.Time);
         }
-
     }
 
 }

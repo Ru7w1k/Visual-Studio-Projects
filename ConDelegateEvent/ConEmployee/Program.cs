@@ -52,8 +52,7 @@ namespace ConEmployee
             foreach (Employee emp in employees.Where(e => e.ID < 106))
             {
                 Console.WriteLine(emp);
-            }
-                       
+            }                       
 
             foreach (var item in employees.Select(e => { return new { Name = e.Name, Location = (e.DepartmentName =="Dev") ? "Pune" : "Mumbai" }; }))
             {
@@ -74,8 +73,6 @@ namespace ConEmployee
             }
 
             Console.WriteLine(employees.Find(e => e.Name == "Rut"));
-
-
 
             Console.Read();
         }
