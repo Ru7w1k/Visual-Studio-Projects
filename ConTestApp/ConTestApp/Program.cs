@@ -183,10 +183,19 @@ namespace ConTestApp
 
             MyMainClass.MainTest();
 
-            var test = new Tuple<int, int, int, int, int, int, int, Tuple<int, int>>(10, 10, 10, 10, 10, 10, 10, new Tuple<int, int>(15,16) ); 
+            var test = new Tuple<int, int, int, int, int, int, int, Tuple<int, int>>(10, 10, 10, 10, 10, 10, 10, new Tuple<int, int>(15,16) );
 
-            
-            
+            SampleStruct test11 = new SampleStruct("test");
+            //SampleStruct test12 = new SampleStruct("test12");
+            SampleStruct test12 = test11;
+
+            test11.Test = "TSETSETSET";
+
+
+
+
+
+
 
             Console.Read();
         }
