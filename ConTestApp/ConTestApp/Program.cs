@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -149,12 +150,43 @@ namespace ConTestApp
             //    Console.WriteLine(e.Message);
             //}
 
-            Celcius c = new Celcius(27);
-            Fahrenheit f = (Fahrenheit)c;
-            f = new Fahrenheit(100);
-            c = (Celcius)f;
+            //Celcius c = new Celcius(27);
+            //Fahrenheit f = (Fahrenheit)c;
+            //f = new Fahrenheit(100);
+            //c = (Celcius)f;
 
-            Console.WriteLine("C: {0}\nF: {1}", c.Degrees, f.Degrees);
+            //Console.WriteLine("C: {0}\nF: {1}", c.Degrees, f.Degrees);
+
+            //int[][] arr = new int[3][];
+            //arr[0] = new int[10];
+
+            //SampleStruct s1 = new SampleStruct();
+            //s1.Test = "testtest";
+
+            //s1 = new SampleStruct("THIS is a test");
+
+            MyLinkedList<string> strList = new MyLinkedList<string>();
+            strList.Add("This");
+            strList.Add("is");
+            strList.Add("a");
+            strList.Add("test");
+            strList.Add("of");
+            strList.Add("the");
+            strList.Add("generic");
+            strList.Add("linked");
+            strList.Add("list");
+
+            foreach (string str in strList.GetEnumerator())
+            {
+                Console.WriteLine(str);
+            }
+
+            MyMainClass.MainTest();
+
+            var test = new Tuple<int, int, int, int, int, int, int, Tuple<int, int>>(10, 10, 10, 10, 10, 10, 10, new Tuple<int, int>(15,16) ); 
+
+            
+            
 
             Console.Read();
         }
@@ -187,5 +219,34 @@ namespace ConTestApp
 
         
 
+    }
+
+    public class MyClass
+    {
+        public virtual int AddNumb(int numb1, int numb2)
+        {
+            int result = numb1 + numb2;
+            return result;
+        }
+
+    }
+
+    public class MyMainClass
+    {
+        public static int MainTest()
+        {
+            Console.WriteLine("\nReflection.MethodInfo");
+            // Create MyClass object
+            MyClass myClassObj = new MyClass();
+            // Get the Type information.
+            Type myTypeObj = myClassObj.GetType();
+            // Get Method Information.
+            MethodInfo myMethodInfo = myTypeObj.GetMethod("AddNumb");
+            object[] mParam = new object[] { 5, 10 };
+            // Get and display the Invoke method.
+            Console.Write("\nFirst method - " + myTypeObj.FullName + " returns " +
+                                 myMethodInfo.Invoke(myClassObj, mParam) + "\n");
+            return 0;
+        }
     }
 }
