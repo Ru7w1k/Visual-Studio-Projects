@@ -164,7 +164,6 @@ namespace ConTestApp
             //s1.Test = "testtest";
 
             //s1 = new SampleStruct("THIS is a test");
-
             MyLinkedList<string> strList = new MyLinkedList<string>();
             strList.Add("This");
             strList.Add("is");
@@ -191,15 +190,18 @@ namespace ConTestApp
 
             test11.Test = "TSETSETSET";
 
-
-
-
-
-
-
             Console.Read();
         }
-        
+
+        /// <summary>
+        /// Will always return zero
+        /// </summary>
+        /// <param name="test"></param>
+        /// <returns></returns>
+        public static int MethodTest(int test)
+        {
+            return 0;
+        }
 
         public static void Method1()
         {
