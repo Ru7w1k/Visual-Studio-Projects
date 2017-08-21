@@ -24,7 +24,6 @@ namespace ConEmp
             Salary = salary;
         }
 
-
         public int CompareTo(Employee other)
         {
             return ID.CompareTo(other.ID);
@@ -88,7 +87,6 @@ namespace ConEmp
             {
                 Console.WriteLine(emp);
             }
-
 
             Console.ReadLine();
         }
