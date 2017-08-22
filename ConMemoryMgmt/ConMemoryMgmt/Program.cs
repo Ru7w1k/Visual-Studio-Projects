@@ -93,6 +93,11 @@ namespace ConMemoryMgmt
             //fileIO.ReadFromFile();
             //fileIO.Dispose();
 
+            using (var Test = new FileIO())
+            {
+                Console.WriteLine("Inside USing");
+            }
+
             FileIOUsing fileIO = new FileIOUsing();
             fileIO.WriteToFile();
             fileIO.ReadFromFile();
