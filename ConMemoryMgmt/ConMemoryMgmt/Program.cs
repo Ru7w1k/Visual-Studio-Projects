@@ -62,15 +62,41 @@ namespace ConMemoryMgmt
         }
     }
 
+    public class FileIOUsing
+    {
+        public void WriteToFile()
+        {
+            using (var writer = new StreamWriter(new FileStream(@"D:\Visual Studio Projects\temp.txt", FileMode.Create)))
+            {
+                writer.WriteLine("This is some demo text USING.");
+                writer.WriteLine("One more line. USING");
+                writer.Flush();                
+            }
+        }
+
+        public void ReadFromFile()
+        {
+            using (var reader = new StreamReader(new FileStream(@"D:\Visual Studio Projects\temp.txt", FileMode.Open)))
+            {
+                Console.WriteLine(reader.ReadToEnd());
+            }
+        }
+    }
 
     class Program
     {
         static void Main(string[] args)
         {
-            FileIO fileIO = new FileIO();
-            fileIO.CreateFile();
+            //FileIO fileIO = new FileIO();
+            //fileIO.CreateFile();
+            //fileIO.WriteToFile();
+            //fileIO.ReadFromFile();
+            //fileIO.Dispose();
+
+            FileIOUsing fileIO = new FileIOUsing();
             fileIO.WriteToFile();
             fileIO.ReadFromFile();
+
 
             Console.ReadLine();
         }
