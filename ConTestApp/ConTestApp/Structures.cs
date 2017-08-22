@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace ConTestApp
 {
     public interface ISampleInterface
-    {
+    {        
         void Test();
     }
 

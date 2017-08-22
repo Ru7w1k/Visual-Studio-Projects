@@ -189,7 +189,7 @@ namespace ConTestApp
             SampleStruct test12 = test11;
 
             test11.Test = "TSETSETSET";
-
+            
             Console.Read();
         }
 
