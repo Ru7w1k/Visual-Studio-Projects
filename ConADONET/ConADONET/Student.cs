@@ -73,5 +73,13 @@ namespace ConADONET
 
             _SqlHelper.Update(number, name);
         }
+
+        public void Delete()
+        {
+            Console.WriteLine("Enter Roll No to delete: ");
+            int number = int.Parse(Console.ReadLine());
+
+            _SqlHelper.Delete(number);
+        }
     }
 }

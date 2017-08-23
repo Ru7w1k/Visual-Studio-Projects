@@ -59,16 +59,32 @@ namespace ConADONET
             _SqlDataAdapter = new SqlDataAdapter(sqlQuery, conString);
             SqlCommandBuilder sb = new SqlCommandBuilder(_SqlDataAdapter);
             _SqlDataAdapter.Fill(ds, "student");
-
+            
             DataTable dt = ds.Tables[0];
             if (dt.Rows.Count > 0)
             {
                 dt.Rows[0][0] = rollNo;
                 dt.Rows[0][1] = name;
             }
-            
             _SqlDataAdapter.Update(dt);
+        }
 
+        public void Delete(int rollNo)
+        {
+            string sqlQuery = string.Format(@"SELECT * FROM [Table] WHERE RollNo = {0}", rollNo);
+            var ds = new DataSet();
+            _SqlDataAdapter = new SqlDataAdapter(sqlQuery, conString);
+            SqlCommandBuilder sb = new SqlCommandBuilder(_SqlDataAdapter);
+            _SqlDataAdapter.Fill(ds, "student");
+
+            DataTable dt = ds.Tables[0];
+
+            foreach (DataRow item in dt.Rows)
+            {
+                item.Delete();
+            }
+
+            _SqlDataAdapter.Update(dt);
         }
     }
 }
