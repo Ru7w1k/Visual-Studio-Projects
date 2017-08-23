@@ -19,7 +19,12 @@ namespace WinTestForm
 
         private void button1_Click(object sender, EventArgs e)
         {
+            label1.Text = "BTN CLICKED!";
+        }
 
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            label1.Text = "THIS IS  A TEST";
         }
     }
 }
