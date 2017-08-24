@@ -1,0 +1,1057 @@
+16 06 2016
+.NET framework
+
+we should never create an object at the top.
+because if it is being used after too many functions, it will waste the memmory and utilise RAM unnecessarily.
+
+CONSTRUCTOR :
+- names must same!
+- usually PUBLIC, but they can be PRIVATE and STATIC
+- looks like method, but never return anything.. NO RETURN TYPE!
+- has PARAMETERS or NO PARAMETERS..
+- any number of cons are POSSIBLE!
+  |
+  -> CONSTRUCTOR OVERLOADING
+
+  - For inheritance, call base class constructor from derived class constructor..
+  - public Derived(arg ,arg,) : Base(arg_of_base) {}
+
+DESTRUCTOR :
+- can be written for CLASS as well as STRUCT
+- write at the end of all functions in class, at the end..
+- ~Class() { }
+- there is a GARBAGE COLLECTOR, which is running in seprate thread for memory deallocation. (Its a SLEEPING THREAD!)
+
+
+## Ctrl + K and Ctrl + C for commenting section..
+
+PROPERTY :
+
+	- getter and setter 
+	- to give PROPERTIES to particular variables..
+	- these are not METHODS..
+	- they ENHANCE the variables..
+	- Framework 2.0 write properties
+	- Framework 3.0 got shorcut for PROPERTIES window..
+		AUTO IMPLEMENTED PROPERTIES
+		- they must define both GET and SET operators!
+		- cannot be ONLY READ or ONLY WRITE..
+
+#PRO	prop tap tap
+#PRO	propfull tap tap
+
+	- Property have a RETURN TYPE, but not ARGUMENT LIST!!
+	- Its name must not be equal to any VARIABLE name..
+	- These are writen is PascalCase..
+	- Property makes a variable PUBLIC!
+	- Properties can be RESTRICTED..
+	- PROPERTY is just a VARIABLE, but ENHANCED!
+
+	- properties can have get and set or any one of them at a time..
+	- i.e. READ_ONLY or WRITE_ONLY or READWRITE
+
+
+
+BreakPoints..
+  if used Ctrl + F5, the breakpoints are not considered..
+  use F5 to stop at breakpoints..
+
+
+STRUCTURES and ENUMS :
+- Structure is a VALUE type, class is REFERENCE type
+- Structures can have constructors.
+- no instance of the structures. (no NEW keyword)
+- without default constructor, can create parameterised constructure.
+- default structure is persent BYDEFAULT in structure.
+- cannot create a constructor without parameters.
+- if constucture is defined, then NEW must be used..
+- if no constructure, then NEW is not required.
+- structures DO NOT support INHERITANCE! (they are sealed by default)
+
+	class Base
+	{}
+
+	class Derived : Base
+	{}
+
+- Class is not sealed by default.
+
+- Enums are VALUE type.
+- They can be defines anywhere.
+- PascalCase
+- Separated by comma (,)
+- After last member there is neihter a (,) nor a (;) 
+- String representation of Integer values.	
+- We can assign randon integer values to enum members.	
+- bydefault they go like 0,1,2 . . 
+- enum DaysOfWeek { Mon, Tue, Wed, Thr, Fri, Sat, Sun};
+
+
+Q : Create enum TimeOfDay which has values Morning, Afternoon, Evening. Write a method called void Greet( TimeOfDay t ) which will take object of enum,
+    Then via a Switch case write appropriate greeting..
+
+#PRO always use CODE SNIPPET if available..( by DOUBLE TAP )
+
+STRING (it is a class)
+- it is REFERENCE type
+- string class don't have a default constructor..
+- string pool : contain multiple values of string assigned,
+	when we create a new string with format string str = "TEST"
+	it will search pool for the same string and if available, point to that value.
+	.. therefore this is useful than creating char array and assigning it to a string 
+- Extention methods.. in Framework 3
+
+Q : Use string methods, 
+		IndexOf    - returns index of first found keyword.
+		IndexOfAny - returns index of first found keyword from array of keys
+		Clone      - shalow copy, create a refernce object
+		Contains   -  retruns TRUE if string contains key or FALSE is string do not contain key 
+		CopyTo     - deep copy, copy actual content to the destination thing..
+		EndsWith   - check whether string ends with the key string (TRUE FALSE)
+		Remove     - Removes the characters after given index with given count..
+		Replace    - Replace the given char or string with other mentioned char or string 
+		SubString  - Returns a substring from given INDEX with given LENGTH
+		StartsWith - Check if string stars with mentioned string, (TRUE FALSE)
+		ToUpper    - convert string into UPPER CASE
+		Trim       - removes WHITE SPACE / CHARS mentioned from both ends
+		TrimEnd    - removes WHITE SPACE / CHARS mentioned from end position
+		TrimStart  - removes WHITE SPACE / CHARS mentioned from start position
+
+String and string both are same class.
+Object and object both are same class.
+
+Q : Create int array (more than 5 elements) using foreach print them..and calculate their sum..
+
+
+FOREACH loop : 
+- READ ONLY loop
+- cannot store value in an collection / array like for loop
+	
+Enumerator : 
+- To iterate through collection..
+
+var :
+- assign any kind of value, like in JS(JavaScript)
+
+Implicit and Explicit casting :
+
+
+Boxing Unboxing : 
+- Value type to Reference type is called BOXING!
+- Reference type to Value type is called UNBOXING!
+- BOXING happens IMPLICITLY, UNBOXING is EXPLICIT..
+
+* : ref ( Passing by reference)
+- ref int x; will point to HEAP instead of STACK!
+- pass by reference, must initialize before passing..
+
+* : out ( pass by reference! )
+- when OUT type parameter is used, we need to init them inside called method.
+
+* : params :
+- to get any number of parameters!
+- not a FIXED NUMBER of parameters..
+- RESTRICTIONS:
+	- params must be at last in the parameter array..
+	- no two params can be in same argument list..
+
+
+void add (int x, int y); // pass by value
+void add (ref int x, ref int y); // pass by reference
+
+INSTANCE METHODS : 
+	methods which will be called only after creating an instance of the class.
+
+CLASS METHODS :
+	can be called without creating an object.
+	Memory allocation at start of program!
+
+
+Q : Internal vs Protected Internal..
+
+INHERITANCE : 
+
+	- BASE class must have EQUAL or MORE access than its DERIVED classes..
+	- It MUST implement all ABSTRACT methods from its BASE class.
+		{
+			class Per { }
+
+			public class Emp : Per { }
+
+			// not possible! 
+		}
+	- structures do not inherit, they are sealed..
+	- class supports this, can be sealed explicitly.. (e.g. String)
+	- SEALED keyword, to stop class from inheriting.. (final in Java)
+	- NO MULTIPLE INHERITANCE! (as JAVA)
+		- class D : B,B1 {}  // WRONG WRONG WRONG !!
+
+	syntax:
+		class BaseClass {}
+		class Derived : BaseClass {}
+
+ // d IS A b
+ IS A relationship : then Derived Class
+HAS A relationship : then its a member of class
+
+Q : Create class "Vehicle", Base class, all PRIVATE members,
+		int chaseNo
+		double price
+		string make
+		VehicleType type
+
+		with constructor (both) with Show method..
+		and create ENUM at NAMESPACE level as VehicleType, {2Wheeler, 3Wheeler, 4Wheeler}
+
+	Have derived class CAR and BIKE,
+		string color , model
+	Base class should contain VehocleType,
+		Then DERIVED CLASS must set a value for VehicleType.
+	D Class have Constructors and Show methods..
+
+
+POLYMORPHISM : 
+	(at . . . level)
+
+	1. Overloading
+		- exist in same class
+		- name must be same
+		- return type may or may not be same (usually same)
+		- parameter list has to be different (or order must be different)
+		- COMPILE TIME !
+		- Early Binding
+
+	2. Overriding
+		- exist in derived class (inheritance)
+		- method name must be same 
+		- method return type must be same 
+		- method parameter list must be sames
+		- RUN TIME !
+		- Late Binding
+			1. Method Overriding (override)
+			2. Method Hiding     (new)
+			
+
+ABSTRACT CLASSES : 
+
+	- These are ALWAYS base classes!
+	- need not to be PUBLIC always!
+	- Can have ABSTRACT methods..
+	- e.g. : abstract class Demo { }
+		- abstract method : public abstract void MethCalc();
+		- these methods are not implemented.
+		- ABSTRACT METHOD must be in only in an ABSTRACT CLASS; but AC can contain normal methods too..
+		- These mothods are BYDEFAULT virtual method!
+		- All these abstract methods MUST BE overriden is its all DERIVED CLASSES..
+	- can have Constructor as well.
+	- cannot create an INSTANCE of abstract class.
+	- BUT it can point to it's derived classes!
+		abstract class Demo{}
+		class Der : Demo {}
+
+		Demo d = new Der() ; it is possible..
+
+	- As we cannot create an instance of a ABSTRACT CLASS, but it contains CONSTRUCTOR..
+	- To call the constructor of ABSTRACT class, use constr of derived class with  : base() thing..
+
+Q : Create ABSTRACT class SHAPE , contain length only.., two derived classes SQUARE, RECTANGLE.
+		Constr, area, Perimeter
+		
+18 06 2016
+SEALED class and methods : 
+	
+	- String is inbuilt sealed class.
+	- These classes are cannot be inherted!
+	- Sealed methods cannot be overriden further!
+
+
+PARTIAL CLASS ( .NET Framework 2.0)
+	
+	- e.g. : partial class Demo {}
+	- Devide class into MULTIPLE sections..
+	- Each section is a PARTICAL class with SAME NAME..
+	- They must be in a SAME namespace!
+	- In Windows Form type application THIS IS TOO MUCH USEFULL, as it seprates the designer and developer code within class!
+
+
+STATIC CLASS :
+
+	- If class is STATIC, then everything in that class MUST BE static..
+	- This class cannot be instantiated! (cannot create Object)
+	- Members are accessed directly via class name..
+	- Memory is allocated to STATIC class at beginning..
+	- Non static class can have STATIC methods or variables..
+	- These are IMPLICITLY SEALED CLASSES.. so cannot bds cae INHERITED!
+	- Override, Abstract, Virtual, New methonnot be used with STATIC members..
+	- When a class objcts are required so often is program, it is made STATIC..
+	- Static member will always remember LAST VALUE.. (no initiation at every time)
+
+
+READONLY VARIABLES :
+
+	- readonly int a;
+	- cannot set value to it..
+	- Only at Constructor and at Declaration..
+
+
+CONSTANT VARIABLE :
+
+	- Provide value at beginnign
+	- They are STATIC by default.
+
+NULLABLE TYPE : 
+
+	- In Framework 2.0
+	- They can point to NULL, (NULLABLE-VALUE type) 
+	
+
+INTERFACE :
+
+	- TO solve the issue of MULTIPLE INHERITANCE
+	- Cannot create its object..
+	- We can implement multiple interfaces!
+	- For dissimilar types use interface
+	- For similar types like shape, use ABSTRACT class
+
+* * * * 
+*
+*   Internal - Protected
+*   - This is INTERNAL or PROTECTED..
+*   - Available in DERIVED CLASS in other namespace.. 
+*
+* * * *
+
+20 06 2016
+
+.NET FRAMEWORK
+
+	- previous framework : COM
+	- Then introduces .NET
+	- Language Independent.. can ues any language..
+	- 50+ lang are suppoted by .NET framework..
+	- Initially it is not Platform Independent..
+	- But from 4.5 or above, it is Platform Independent..
+	- Entity Framework 7 (MS) - platform independent..
+	- Partial Platform Independent.. ( Windows XP app can run on other Windows OS..)
+	- .NET 3.0 - Mono.exe introduced.. with which Platform Independent Started..
+	- (Java Virtual Machine) JVM ~ CLR (Common Language Runtime)
+	- Many libraries (.dll) (Dynamic Link Library)
+
+	- DLL HELL PROBLEM :
+		- .exe appln with multiple dll dependencied..
+		- A new version is launched of that app, which uses some more dll files..
+		- Those new .dll files used to OVERRIDE previous methods..
+		- This was solved in .NET FRAMEWORK..
+		- It keeps its own metadata and will keep other methods is other assembly as they are..
+
+	STRUCTURE : 
+
+	_________________________
+	| 						|
+	|	Base Class 			|
+	|	libraries			|
+	|	(BCL, CL, FCL)		|
+	|						|
+	|_______________________|
+	|						|
+	|	Common 				|
+	|	Language 			|
+	|	Runtime 			|
+	|						|
+	|_______________________|
+
+		.NET FRAMEWORK
+
+
+
+	CLR (Common Language Runtime)
+	_________________________________________________
+	|												|
+	|	CTS (Common Type System)					|
+	|	_________________________________________   |
+	|	|										|	|
+	|	|	CLS	(Common Language Specification)	|	|
+	|	|										|	|
+	|	|_______________________________________|	|
+	|												|
+	|_______________________________________________|
+
+
+	CTS : 
+		- will convert data type in any language into a COMMON TYPE..
+		- like Int32 - int , integer, etc..
+		- Int16 - short, 
+
+
+	CLS : 
+		- It defines the rules for every language..
+		- e.g. C#: Emp e = new Emp();  // these rules are defined by CLS
+
+ADVANTAGES : 
+
+	- Gives Inter-Operatibility, (e.g. can access EXCEL (which is COM component) sheet data in C# code..)
+	- Automatic Memory Management.. (in C, C++ don't have)
+	- Garbage COllector, an ALGORITHM running always to check on MEMORY..
+		- It will deallocate memory, which is not required..
+		- It is SLEEPING THREAD, only active when MEMORY CRISIS..
+
+.NET ASSEMBLY EXECUTION :
+
+	- Assembly : an .exe file, .dll file (library) or a program..  
+	- 2 STAGE COMPITATION : 
+		
+
+	1ST STAGE :
+
+		Source
+		code			C#			VB.net 		F#	. . . 
+
+						|				|
+						V 				V
+
+		Respective		C#			VB
+		compiler		compiler	Compiler
+
+								|
+								V
+
+							MSIL or
+							CIL or IL
+
+
+		(Microsoft Intermediate Language)
+		(Common Intermediate Language)
+		(Intermediate Language)
+
+		- For same logic in differnet lang.. MSIL will be same!
+
+
+	2ND STAGE :
+
+		Source			MSIL 
+		code 			(always)
+
+							|
+							V
+
+		JIT
+		(Just In 		(will compile only required methods)
+		Time)			(finish the job quickly)
+		Compiler	
+
+
+
+INDEXERS :
+	
+	- something similar to PROPERTY.
+	- Used to make a CLASS behave like an ARRAY.
+	- Have getter and setter
+	- Don't have a name
+	- Multiple Indexers are possible, with different parameters or INDEXER VALUES (Overloaded Indexers)
+	- public string this[int index]
+		{
+			get{}
+			set{}
+		}	
+
+
+COLLECTION : 
+
+	1. Generic (in 2.0)
+	2. Non-Generic (from 1.x)
+
+	2. NON GENERIC COLLECTION
+
+	- Non generic : in System.Collection;
+	- ArrayList, Stack, Queue <- Sequential Collection Classes (values are added in sequential manner)
+	- HashTable <- (key,value) pair.. Dictionary type..
+	- SortedList
+	- Foreach loop works on those who returns IEnumerable directly or indirectlty.. 
+
+	- IComparer Interface to implement sorting of different types of data..
+	- Stack and Queue dont have Indexers..
+	- ArrayList have indexer..
+
+
+21 06 2016
+
+	DRAWBACKS of NON GENERIC collections :
+	- Boxing Unboxing will take longer to execute..
+	- Therefore use generic collections whenever possible..
+
+	1. GENERIC COLLECTION
+
+		- List<TYPE> (~ ArrayList) : List<int>, List<Person>
+		- <> mention type of data it will accept..
+		- Stack<> (~Stack) , Queue<> (~Queue), Dictionary<> (~ Hashtable), LinkedList<> (Doubly LL)
+		- SortedList
+		- Extention methods are mostly GENERIC..
+		- It avoids BOXING UNBOXING..
+		- Avoids RUNTIME erros.. 
+ 
+
+-- Assignment
+Q : Initial List -> quick fox over
+	Final o/p -> The quick brown fox jump over the lazy dog
+ 	Using LinkedList
+
+Q : Get data from user until * and write it to a File..
+
+ 
+ EXCEPTION HANDLING : 
+
+ 	- To cought RUN TIME errors..
+ 	- Try-Catch-Finally block..
+ 	- In Finally block all objects are deallocated..
+ 	- Try must have catch or Finally..
+ 	- Try cannot exist on its own..
+ 	- Its a good programing style, to have this block, when accessing outside .NET framework
+ 	- Put methods in try-catch block, not CLASS !
+ 	- Exception is a base class of all EXCEPTIONS..
+
+
+ 		try // always execute
+ 		{
+ 			// logic or code..
+ 		}
+ 		catch (Exception e) // execute if exception
+ 		{
+ 			// do some handling..
+ 		}
+ 		finally // always get executed..
+ 		{
+ 			// dispose objects over here, rather than waiting for garbage collector..
+
+ 			// e.g.
+ 			file.close();
+ 			conn.close();
+
+ 		}
+
+
+ 		OTHER STYLES:
+
+	 	:	try
+	 		{
+
+	 		}
+	 		finally
+	 		{
+
+	 		}
+
+	 
+	 	:	try
+	 		{
+
+	 		}
+	 		catch(Exception e)
+	 		{
+
+	 		}
+	 
+	 	:	try
+	 		{
+
+	 		}
+	 		catch()
+	 		{
+
+	 		}
+	 		catch()
+	 		{
+
+	 		}
+	 		finally
+	 		{
+
+	 		}
+
+
+MUTABLE and IMMUTABLE : 
+
+	- We cannot stop STRING class from creating new object, so they are IMMUTABLE..
+	- string will create a new object whenever any manipulation is done to it..
+	- soln : StringBuilder class..
+	- Instead of using string str = new string.. use string str = "String".. It will point in string pool if available..
+
+
+
+STRING BUILDER CLASS : 
+	
+	- System.Text namespace..
+	- Strings are IMMUTABLE..
+	- This class is MUTABLE..
+	- StringBuilder ~ StringBuffer in Java
+
+ 
+SYSTEM.IO :
+
+	- Console IO
+	- FileStream, StreamReader, StreamWriter
+	- static class File 
+	- Info Classes : FileInfo, DirectoryInfo, DriveInfo
+ 
+	IO:
+
+		1. Info Classes
+			|
+			\_> FileInfo, DirectoryInfo, DriveInfo
+
+		2. Utility Classes
+			|
+			\_> Manipulation of files..
+
+
+	.NET 4.5 introduced ASYNC methods, which can be executing, and still program can go ahead..
+
+IDisposible : 
+
+	- Interface to dispose memory or resorces which are using components from outside of .NET framework..
+	- Dispose mem without waiting for Garbage Collector..
+	- Those who implement this Interface, can be used in USING keyword..
+			using ( resource- Implementing IDisposable interface)
+			{
+
+			}
+
+.NET New Feature :
+
+	- 3.0 was beta version..
+		- partial methods was introduces..
+		- Reduce the code size..
+		- Auto Implemented Properties.. // public int a {get ; set;}
+		- var keywoed..compile time..
+		- dynamic keywoed..run time..
+		- Explicit types..
+		- Linq Queries..
+
+	- 3.5 : linq was introduces..
+
+
+	- 4.0 :
+		- Named Parameter, Default parameter, Optional Parameters..
+
+EXTENTION METHODS : 
+	
+	- Thsese are STATIC methods, inside a STATIC class..
+	- Class must be PUBLIC , as they will be used by other programs..
+	- Its 1st parameter is ALWAYS 'this'..
+	- they extend a data type, from that data type object we can call these methods..
+
+
+PARTIAL METHODS :
+
+	- from 3.0
+	- Same as PARTIAL CLASS, to seprate one method into multiple Methods..
+	- RULES:
+		- Written only within PARTIAL class..
+		- They are created using PARTIAL keyword.
+		- One section is declared, other section may or may not implement it..
+		- Cannot have access modifires, not override, abstract or virtual..
+		- Can be Static..
+		- As in partial class, they will be in SAME NAMESPACE..
+		- MUST have void RETURN type..
+
+TEST : 
+
+ILDASM : 
+
+	- INTERLANGUAGE DISASSEMBLER
+	- ildasm - Check in (VS2015 cmd prompt..)
+
+
+22 06 2016
+
+DELEGATE :
+
+	- Like a pipe to pass data from one end to another..
+	- Its a data type, like class, interface, enum..
+	- Looks loke method, with keyword DELEGATE ( but its a different than Method..)
+	- Its a type safe function pointer..i.e. it used to execute EVENTS / METHODS..
+	- Its actual usage is To execute Events..
+	- Can create INSTANCE of DELEGATE..
+	- Pass methods in that instance whose return type and parameter list mathces exactly..
+
+	WHAT IS THE NEED ?
+
+		- To Handle events..
+		- They are executed when some Action occurs..
+		- EventHandler, CancelEventHandler is the delegate (MULTICAST) used in Windows Forms Applications..
+
+	MULTICAST DELEGATE : 
+
+		- Append multiple methods into one delegate object..
+		- Its return type must be VOID
+		- parameter will be commom to all methods appended..
+	
+	ANONYMOUS DELEGATE:
+
+		- Delegate without any name..
+		- Not seprately named..defined..
+		- Avoid method writing..
+
+
+LABDA EXPRESSION : 
+
+	- in 3.5 framework
+	- (~) annonymous delegate
+	- (x,y) => (x + y)
+	   |
+	   \_> L.H.S. goes to R.H.S.
+
+	- Predicate - as parameter , then use LAMBDA EXPRESSION..
+
+
+WEB APPLICATIONS : 
+
+	- Client-Server Application..
+	
+						    REQEST
+	- Client (BROWSER)  -------------->   Server
+					   <--------------										
+					   	    RESPONES
+
+	- Protocol : HTTP (Stateless protocol)
+	- State managements : Cookies..
+
+
+	- VS have its own server..to run web applications..
+	- Plain HTML or JS does not require WEB SERVER As they are client side lang.
+	- For php, jsp, asp.net they require a server to check these files, as they are server side scripting lang..
+
+	- XML pages are case sensitive, so take care while editiing them..
+
+	- aspx - Active Server Pages.	
+	- asp objects, must have runat="server"
+	- It means that, when there is an Action on those components, it will run at server.
+	- Every asp component run at server side, never at client side..
+	- HTML components can run at anywhere..
+	- Every web form class is inherited by a class Page.
+
+	- Java Script : usually written just before closing of body tag..
+	- But we can write it anywhere in HTML page..
+	- JS is CaSe SenSiTive..
+
+	- Default asp:button behaviour is to post the data back to the server..
+	- Group name must be same of all similar Radio Buttons.. to act in desired way..
+	- AutoPostBack Property..
+	- Button is not INPUT CONTROL..
+	- While Debugging page selected must not be .config file as it will try to debug that..
+	- We can set the Startup page in Solution Explorer by right clicking on the PAGE, then select set as Start..
+
+
+	- VALIDATOR : 
+
+		- ControlToValidate : set this property, it will validate the ponited object..
+		- When we are using Validators in page, edit web.config file and enter the following TAG after configuration tab..
+			    <appSettings>
+  				 	<add key="ValidationSettings:UnobtrusiveValidationMode" value="None"/>
+  			    </appSettings>
+
+  		- 
+  		- REGULAR EXPRESSION : 
+  			\w      : any letter or number.. (0-9 a-z A-Z)
+  			+       : ONE or MORE occurances..
+  			*       : ZERO or MORE occurances..
+  			[ , , ] : any one in this..
+
+
+  		- ValidationSummary : 
+  			- Summaries all the validations at the end..
+
+
+23 06 2016
+		
+		- Range Validator : 
+			- Set to check value between a Range..
+
+
+		- Custom Validator : 
+			- Only this validator have a event/ method..
+
+
+Q : 2 clm table,
+	1 row 1 col : Radio Button (Cricket)
+	1 row 2 col : Radio Button (Football)
+
+	below rows.. are names with their hyperlinks..which will ridirect to some other page..
+		// AUTOPOSTBACK property..and GROUP PAGE..
+
+	DONE !
+
+
+PAGE LIFE CYCLE : 
+	
+	- Fully execute on server side..
+	- Events of the page..
+	- S I L V E R U 
+	  (Start) -> (Initialisation) -> (Loading) -> (Validation) -> (Events Handling) -> (Render) -> (Unload)
+	
+		(Initialisation)
+		Page_Pre_Init() : Master page, Themes will init..
+		Page_Init()     : All controls and child controls will be init..
+
+		(Load)
+		Page_Load() : On browser page will load..
+
+		(Validation)
+		If any validation, it will perform it, then respond..
+		like login pages error for invalid user name and password..
+
+		(Render) :
+		Pre_Render() : last moment changes..
+		Render()     : 
+
+
+AUTO WIRE UP EVENT : events will be automatically called
+Other than page, no one have autoEventWireup as TRUE..
+
+
+These are the events : 
+	will execute 
+
+Page_init()
+Page_PreInit()
+Page_load()
+Page_PreRender()
+Page_Render()
+Page_Unload()
+
+
+	MASTER PAGE :
+
+		- these are not available is JSP..
+		- Header Footer Side bars are mostly same, and only content in the body part is being changed..
+		- It will contain a common design, for all pages of same website..
+
+		- ContentPlaceHolder in body is for other pages contents..
+		- Cannot Debug Master Page..
+
+	A PAGE DERIVED FROM MASTER PAGE : 
+		- contains two asp:Content tags...
+			- above is for writing in HEAD tag
+			- second for writing in BODY tag..
+
+
+
+ADO.NET : 
+
+	- ActiveX Data Object..
+	- before this, ADO with VB6 was present, 
+	- now, ADO also integrates the .NET libraries..
+
+	ARCHITECTURE : 
+
+
+		1. Connected 				2. Disconnected
+
+	(always connected)
+	(open connection)   	(does not require continuos data connection)
+
+
+	1. Connected ARCHITECTURE :
+
+		1.1 Connection String : 1. Database Name
+							2. Server 
+							3. Credential Information 
+
+		1.2 Command Object : queries here..
+
+		1.3 Data Reader : used to read the data from query (returned by select query)
+						  can hold only one table at a time..
+						  cannot modify the data..
+
+		1.4 Data Adapter : require for disconnected objects
+						   Part of CONNECTED but used with DISCONNECTED..
+						   Bridge between Conn and Disconn
+
+		- database is connected always, hackable..
+		- always have to write conn.open() and con.close(), they will take larger time..
+		- good for small project..
+		- data reader can read one table at a time..
+		- data reader cannot manipulate the data..
+
+
+	2. Disconnected ARCHITECTURE : 
+
+		- in this format, XML data can be accessed from here..
+
+		2.1 Data set : ~ Data Reader
+					   - collection of tables..
+					   - can access each table by INDEX or NAME
+					   - can fire SELECT INSERT UPDATE DELETE commands..
+					   - DataTable class object is used to access single table from database..
+					   		- DataColumn and DataRow are also available..
+
+		2.2 Data Adapter : When database is modified within appln, we must update the original database also..
+						   This Data Adapter will provide connection to do that..
+
+
+
+POSTBACK : 
+
+	REFRESH PAGE ALWAYS and WHOLE PAGE LIFECYCLE WILL BE EXECUTED AGAIN!
+
+
+
+
+24 06 2016
+
+
+// these for CONNECTED ARCHITECTURE
+DataReader =	cmd.ExecuteReader()
+int        =	cmd.ExecuteNonQuery()  : Insert, Update, Delete : Return No of ROWS Affected..
+Object 	   =	cmd.ExecuteScalar()    : return a single value
+
+
+Stored Procedures : 
+	
+	in SQL : they are preparsed, precompiled queries..
+	they save the cost of compiling query every time..
+
+
+	only varchar will take single character, we have to mention the size.
+	Query lang are not case sensitive
+
+	Once created an object we have to alter it..we cannot re create it..
+
+	at parameter, if we write output, it will become output parameter..else it is input by default..
+
+	If these are not used then we have to enter query as a string, and concat the variables wherever required..(as we have done in DMA pracs..)
+
+
+25 06 2016
+
+	DISCONNECTED ARCH : 
+
+		- Need connection string
+		- need sql query..
+		- use Data Adapter instead of DataReader..
+		- DataSet as DataReader
+		- No need of con.open or close()
+		- DataSet contain collection of Tables, can be accessed via INEDXERS..
+
+
+	HTTP IS STATELESS :
+
+		- How to store values when required?
+		- To do this STATE MANAGEMENT is required..
+
+			1. SERVER SIDE : 
+
+				- IMPORTANT DATA MUST BE ON THIS SIDE : CREDENTIALS
+				- Session State
+				- Apllication State
+
+			2. CLIENT SIDE :
+
+				- STORE NON IMP DATA HERE
+				- View State
+				- Query String
+				- Cookies
+
+
+		VIEW STATE : 
+
+			- Enable view state : TRUE by default for all
+			- To retain values between postbacks..
+			- Labels or Controls who are holding STATIC values, must set ViewState to FALSE, to increase the performance..
+			- But it is IMPORTANT to set when values are DYNAMIC..
+			- They cannot pass values between different pages..
+			- IF page contain all static fields, then set the EnableViewState of page as FALSE..
+
+		QUERY STRING : 
+
+			- Values of this string are visible on URL, like ?uname=asfuahfe
+			- Then can be changed via a browser.
+			- MUST NOT STORE CREDENTIALS or IMP DATA..
+			- Can send data to other pages..
+			- Can send String by encrypting, but it will take much more cost..
+
+		COOKIES : 
+
+			- From one page to another.
+			- Cookies are client side..
+			- They are created on SERVER side and stored on CLIENT side browser..
+			- Cookies are used to track the single user..
+			- Every req to server will send cookie along with it, and will get a cookie back with response, until we close the connection with server..
+			- This is the biggest disadvantage of cookies.
+			- Cookies are PERMANANT or TEMP..
+			- If the cookie is permanant, they are stored in the clients directory structure as a plane text files..
+			- They can be made permanent by setting the expires property of cookies object..
+			- Hence they are not at all safe..
+			- Cookies can be disabled..
+			- BUT NOW, COOKIES ARE OBSOLETE..not used very often in HTML5!
+
+
+
+camelCase
+
+PascalCase
+
+
+private string color;
+
+public string Color
+{
+	
+}
+
+## Phase III
+## 19 12 2016
+## Noorin Ma'am
+
+- Write every class in a different file.
+- cw TAB TAB
+- override and virtual (IMPURE OBJECT)
+	- If Base class method is virtual then it will check for overriden function.
+	- If not, it will execute base class function.
+
+	Virtual Function Talbe : Store pointers to virtual function in objects memory on heap!
+
+- Static Constructor
+	- At the time of loading class
+	- No Access Specifier, Return type, argument list..
+		static Class()
+		{}
+	- WHY? to initialize static variables at run-time..
+
+- abstract Class : 
+	- WHY? because we dont have object of abstract class in real world, so abstract them..
+	- MUST override abstract methods..
+
+- finally :
+	- will always gets executed ..
+
+## 20 12 2016
+
+Serialization : 
+DEEP : 
+	- Binary : .NET to .NET
+	- Soap   : .NET to OTHER / over web
+
+	- everything gets serialized!
+
+	Object of class to serialize
+	Object of BinaryFormatter bf
+	Object of FileStream      fs
+	bf.serialize(fs, s)
+	bf.deserialize(fs)
+
+	- Mark class as Serializable to make it serializable!
+			[Serializable]
+			Class DemoSerDe
+
+SHALLOW : 
+	- class is not marked Serializable
+	- Class must be public
+	- Class should have public constructor
+	- serialize only public members and properties with both getter and setter 
+	- XmlSerializable
+
+
+-- XORIANT --
+24 08 2017
+
+Assembly : Execution Unit
