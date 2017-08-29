@@ -192,7 +192,7 @@ namespace ConTestApp
             
             Console.Read();
         }
-
+         
         /// <summary>
         /// Will always return zero
         /// </summary>
