@@ -15,7 +15,7 @@ namespace ConDataFirst
             {
                 //var emp = new Employee();
                 //emp.EmpId = 41;
-                //emp.Name = "Emp1";
+                //emp.Name = "EmpUpdated";
                 //emp.Salary = 10000;
                 //EmpObj.Employees.Add(emp);
 
@@ -39,11 +39,24 @@ namespace ConDataFirst
 
                 //EmpObj.SaveChanges();
 
-                var emps = EmpObj.Employees;
-                foreach (var emp in emps)
-                {
-                    Console.WriteLine(emp.EmpId + " " + emp.Name + " " + emp.Salary);
-                }
+
+                //var emps = EmpObj.Employees;
+                //foreach (var emp in emps)
+                //{
+                //    Console.WriteLine(emp.EmpId + " " + emp.Name + " " + emp.Salary);
+                //}
+
+                // UPDATE
+                //Employee emp = EmpObj.Employees.First(i => i.EmpId == 2);
+                //emp.Name = "EmpUpdated";
+                //emp.Salary = 99999;
+                //EmpObj.SaveChanges();
+
+                // DELETE
+                Employee emp = EmpObj.Employees.First(i => i.EmpId == 2);
+                EmpObj.Employees.Remove(emp);
+                EmpObj.SaveChanges();
+
             }
             
             Console.ReadLine();
