@@ -39,7 +39,7 @@ namespace ConDataFirst
 
                 //EmpObj.SaveChanges();
 
-
+                // SELECT
                 //var emps = EmpObj.Employees;
                 //foreach (var emp in emps)
                 //{
