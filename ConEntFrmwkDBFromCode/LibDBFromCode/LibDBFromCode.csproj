@@ -59,6 +59,10 @@
     <Compile Include="Migrations\201708290808089_AddURL.Designer.cs">
       <DependentUpon>201708290808089_AddURL.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201708290819361_AddDepartment.cs" />
+    <Compile Include="Migrations\201708290819361_AddDepartment.Designer.cs">
+      <DependentUpon>201708290819361_AddDepartment.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -72,6 +76,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201708290808089_AddURL.resx">
       <DependentUpon>201708290808089_AddURL.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201708290819361_AddDepartment.resx">
+      <DependentUpon>201708290819361_AddDepartment.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

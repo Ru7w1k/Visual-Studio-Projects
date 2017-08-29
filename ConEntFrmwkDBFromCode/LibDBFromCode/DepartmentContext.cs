@@ -10,5 +10,11 @@ namespace LibDBFromCode
     public class DepartmentContext : DbContext
     {
         public DbSet<Department> Departments { get; set; }
+
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Department>().Property(u => u.Name).HasColumnName("DeptName");
+        }
+
     }
 }
