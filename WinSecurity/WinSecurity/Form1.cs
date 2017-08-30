@@ -39,5 +39,21 @@ namespace WinSecurity
                 MessageBox.Show(ex.Message);
             }
         }
+
+        private void btnRead_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog ofd1 = new OpenFileDialog();
+            ofd1.ShowDialog();
+
+            FileIOHelper helper = new FileIOHelper();
+            try
+            {
+                MessageBox.Show(helper.ReadFromFile(ofd1.FileName));
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
     }
 }

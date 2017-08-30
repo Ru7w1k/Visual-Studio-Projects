@@ -1,5 +1,8 @@
-﻿using System;
+﻿#define TEST
+
+using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Reflection;
 using System.Text;
@@ -52,17 +55,23 @@ namespace ConTestApp
             MyProperty = "test2";            
         }
 
-        public string Print()
+        [Conditional("TEST")]
+        public void Print()
         {
-            return "This is Test2 Class";
+            Console.WriteLine("This is Test2 Class");
         }
     }
     
+    [Test1(MyProperty = "Test")]
     class Program
     {       
 
         static void Main(string[] args)
         {
+
+            Test2 t = new Test2();
+            t.Print();
+
             //int a = int.MaxValue;
             //int c = a * a;
 
@@ -164,31 +173,31 @@ namespace ConTestApp
             //s1.Test = "testtest";
 
             //s1 = new SampleStruct("THIS is a test");
-            MyLinkedList<string> strList = new MyLinkedList<string>();
-            strList.Add("This");
-            strList.Add("is");
-            strList.Add("a");
-            strList.Add("test");
-            strList.Add("of");
-            strList.Add("the");
-            strList.Add("generic");
-            strList.Add("linked");
-            strList.Add("list");
+            //MyLinkedList<string> strList = new MyLinkedList<string>();
+            //strList.Add("This");
+            //strList.Add("is");
+            //strList.Add("a");
+            //strList.Add("test");
+            //strList.Add("of");
+            //strList.Add("the");
+            //strList.Add("generic");
+            //strList.Add("linked");
+            //strList.Add("list");
 
-            foreach (string str in strList.GetEnumerator())
-            {
-                Console.WriteLine(str);
-            }
+            //foreach (string str in strList.GetEnumerator())
+            //{
+            //    Console.WriteLine(str);
+            //}
 
-            MyMainClass.MainTest();
+            //MyMainClass.MainTest();
 
-            var test = new Tuple<int, int, int, int, int, int, int, Tuple<int, int>>(10, 10, 10, 10, 10, 10, 10, new Tuple<int, int>(15,16) );
+            //var test = new Tuple<int, int, int, int, int, int, int, Tuple<int, int>>(10, 10, 10, 10, 10, 10, 10, new Tuple<int, int>(15,16) );
 
-            SampleStruct test11 = new SampleStruct("test");
-            //SampleStruct test12 = new SampleStruct("test12");
-            SampleStruct test12 = test11;
+            //SampleStruct test11 = new SampleStruct("test");
+            ////SampleStruct test12 = new SampleStruct("test12");
+            //SampleStruct test12 = test11;
 
-            test11.Test = "TSETSETSET";
+            //test11.Test = "TSETSETSET";
             
             Console.Read();
         }
@@ -203,30 +212,30 @@ namespace ConTestApp
             return 0;
         }
 
-        public static void Method1()
-        {
-            object[] objs = new object[6];
-            objs[0] = new Test1();
-            objs[1] = new Test2();
-            objs[2] = "String";
-            objs[3] = 213;
-            objs[4] = null;
-            objs[5] = false;
+        //public static void Method1()
+        //{
+        //    object[] objs = new object[6];
+        //    objs[0] = new Test1();
+        //    objs[1] = new Test2();
+        //    objs[2] = "String";
+        //    objs[3] = 213;
+        //    objs[4] = null;
+        //    objs[5] = false;
 
-            for(int i = 0; i < objs.Length; i++)
-            {
-                Test2 s = objs[i] as Test2;
-                Console.Write("{0}: ", i);
-                if(s != null)
-                {
-                    Console.WriteLine("'" + s.Print() + "'");
-                }
-                else
-                {
-                    Console.WriteLine("not a string");
-                }
-            }
-        }
+        //    for(int i = 0; i < objs.Length; i++)
+        //    {
+        //        Test2 s = objs[i] as Test2;
+        //        Console.Write("{0}: ", i);
+        //        if(s != null)
+        //        {
+        //            Console.WriteLine("'" + s.Print() + "'");
+        //        }
+        //        else
+        //        {
+        //            Console.WriteLine("not a string");
+        //        }
+        //    }
+        //}
 
         
 
