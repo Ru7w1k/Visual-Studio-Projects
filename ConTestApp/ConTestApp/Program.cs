@@ -21,6 +21,32 @@ namespace ConTestApp
     //        }
     //    }
     //}
+
+    class HelpAttribute : Attribute
+    {
+        public string HelpText { get; set; }
+
+    }
+
+    [Help(HelpText = "This is a class")]
+    class Customer
+    {
+        private string _CustomerCode;
+
+        [Help(HelpText = "This is a property")]
+        public string CustomerCode
+        {
+            get { return _CustomerCode; }
+            set { _CustomerCode = value; }
+        }
+
+        [Help(HelpText = "This is a method")]
+        public void Add()
+        {
+
+        }
+    }
+
     public class BaseClass
     {
         public string BaseProp { get; set; }
@@ -31,9 +57,15 @@ namespace ConTestApp
         public string DerivedProp { get; set; }
     }
 
+    [AttributeUsage(AttributeTargets.Property)]
+    class Check : Attribute
+    {
+        public int MaxLength { get; set; }
+    }
 
     class Test1
     {
+        [Check(MaxLength = 10)]
         public string MyProperty { get; set; }
         public Test1()
         {
@@ -71,6 +103,8 @@ namespace ConTestApp
 
             Test2 t = new Test2();
             t.Print();
+
+            Customer cust = new Customer();
 
             //int a = int.MaxValue;
             //int c = a * a;
