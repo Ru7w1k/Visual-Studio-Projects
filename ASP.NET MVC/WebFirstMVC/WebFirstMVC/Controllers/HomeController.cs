@@ -14,6 +14,17 @@ namespace WebFirstMVC.Controllers
             return View();
         }
 
+        [ActionName("JSON")]
+        public JsonResult MyIndex()
+        {
+            Employee emp = new Employee();
+            emp.EmpId = 101;
+            emp.Name = "Test";
+            emp.Salary = 5000;
+
+            return Json(emp, JsonRequestBehavior.AllowGet);
+        }
+
         public ActionResult EmpView()
         {
             Employee emp = new Employee();
