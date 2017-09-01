@@ -1,8 +1,18 @@
 ﻿@using WebFirstMVC.Models
 @model Employee
 
-<div>
+@{ 
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div style="padding-top:50px;">
     <strong>Employee ID : </strong> @Model.EmpId <br />
     <strong>Name : </strong> @Model.Name <br />
     <strong>Salary : </strong> @Model.Salary.ToString("C") 
+
+    <form class="form-group form-inline" action="/Home/PostAction" method="post">
+        <input class="form-control" stype="text" name="txtName" />
+        <input class="form-control" type="submit" name="btnSubmit" value="Submit" />
+    </form>
+
 </div>

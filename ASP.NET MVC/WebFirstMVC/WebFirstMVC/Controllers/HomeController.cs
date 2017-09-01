@@ -34,6 +34,10 @@ namespace WebFirstMVC.Controllers
             return View(emp);
         }
 
+        public string PostAction(string btnSubmit, string txtName)
+        {
+            return txtName + " " + btnSubmit;            
+        }
 
         [ActionName("CurrentTime")]
         public ActionResult GetCurrentTime()
