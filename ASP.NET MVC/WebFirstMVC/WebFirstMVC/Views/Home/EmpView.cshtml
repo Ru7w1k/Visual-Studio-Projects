@@ -10,7 +10,7 @@
     <strong>Name : </strong> @Model.Name <br />
     <strong>Salary : </strong> @Model.Salary.ToString("C") 
 
-    <form class="form-group form-inline" action="/Home/PostAction" method="post">
+    <form class="form-group form-inline" action="/Home/PostAction" method="get">
         <input class="form-control" stype="text" name="txtName" />
         <input class="form-control" type="submit" name="btnSubmit" value="Submit" />
     </form>
