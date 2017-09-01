@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using WebFirstMVC.Models;
+using WebFirstMVC.ModelView;
 
 namespace WebFirstMVC.Controllers
 {
@@ -39,6 +40,14 @@ namespace WebFirstMVC.Controllers
             return txtName + " " + btnSubmit;            
         }
 
+        public ActionResult EmployeeView()
+        {
+            Employee emp = new Employee() { EmpId = 101, Name = "test", Salary = 200 };
+            EmployeeView empView = new ModelView.EmployeeView();
+            empView.Name = emp.Name;
+            return View(empView);
+        }
+        
         [ActionName("CurrentTime")]
         public ActionResult GetCurrentTime()
         {
