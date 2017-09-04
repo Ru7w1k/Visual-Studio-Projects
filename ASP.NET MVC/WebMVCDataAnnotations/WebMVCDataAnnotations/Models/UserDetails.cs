@@ -7,6 +7,13 @@ using System.Web;
 
 namespace WebMVCDataAnnotations.Models
 {
+    public enum UserType
+    {
+        AuthenticAdmin,
+        AuthenticUser,
+        NoAuthenticUser
+    }
+
     public class UserDetails
     {
         [Key]
