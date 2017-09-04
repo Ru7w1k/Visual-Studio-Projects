@@ -1,0 +1,67 @@
+﻿@model WebMVCDataAnnotations.Models.UserDetails
+
+@{
+    ViewBag.Title = "Register";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Register</h2>
+
+<div>
+    @using (Html.BeginForm("doregister", "user", FormMethod.Post))
+    {
+        <table>
+            <tr>
+                <td>Username:</td>
+                <td>
+                    @Html.TextBoxFor(u => u.UserName, new { @class = "form-control" })
+                </td>
+                <td>
+                    @Html.ValidationMessageFor(u => u.UserName)
+                </td>
+            </tr>
+            <tr>
+                <td>Password:</td>
+                <td>
+                    @Html.PasswordFor(u => u.Password, new { @class = "form-control" })
+                </td>
+                <td>
+                    @Html.ValidationMessageFor(u => u.Password)
+                </td>
+            </tr>
+            <tr>
+                <td>Name:</td>
+                <td>
+                    @Html.TextBoxFor(u => u.Name, new { @class = "form-control" })
+                </td>
+                <td>
+                    @Html.ValidationMessageFor(u => u.Name)
+                </td>
+            </tr>
+            <tr>
+                <td>Email:</td>
+                <td>
+                    @Html.TextBoxFor(u => u.Email, new { @class = "form-control" })
+                </td>
+                <td>
+                    @Html.ValidationMessageFor(u => u.Email)
+                </td>
+            </tr>
+            <tr>
+                <td>Mobile:</td>
+                <td>
+                    @Html.TextBoxFor(u => u.Mobile, new { @class = "form-control" })
+                </td>
+                <td>
+                    @Html.ValidationMessageFor(u => u.Mobile)
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <input type="submit" name="register" value="Register" class="form-control btn btn-primary" />
+                </td>
+            </tr>
+        </table>
+    }
+</div>
+
