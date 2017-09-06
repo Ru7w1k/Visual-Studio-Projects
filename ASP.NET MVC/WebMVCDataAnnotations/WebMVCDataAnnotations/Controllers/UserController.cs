@@ -36,8 +36,9 @@ namespace WebMVCDataAnnotations.Controllers
             return View();
         }
 
+
         [HttpPost]
-        public ActionResult Home(User user)
+        public ActionResult DoLogin(User user)
         {
             if(!ModelState.IsValid)
             {
@@ -48,12 +49,17 @@ namespace WebMVCDataAnnotations.Controllers
             {
                 if(usrDB.Users.Any(u => u.UserName.Equals(user.UserName) && u.Password.Equals(user.Password)))
                 {
-                    return View(user);
+
+                    return View("home", user);
                 }
             }
+            return View("login", user);           
+        }
 
-            return View("login", user);
-           
+        [Authorize]
+        public ActionResult Home(User user)
+        {
+            return View(user);
         }
     }
 }

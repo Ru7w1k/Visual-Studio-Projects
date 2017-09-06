@@ -1,0 +1,14 @@
+﻿@model WebMVCGlobalization.Models.User
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<div>
+    @Html.LabelFor(u => u.FirstName)
+    @Html.TextBoxFor(u => u.FirstName)
+    @Html.LabelFor(u => u.LastName)
+    @Html.TextBoxFor(u => u.LastName)    
+</div>
