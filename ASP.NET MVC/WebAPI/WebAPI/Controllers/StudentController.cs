@@ -10,7 +10,7 @@ namespace WebAPI.Controllers
 {
     public class StudentController : ApiController
     {
-        public static List<Student> _students = new List<Student>()
+        private static List<Student> _students = new List<Student>()
         {
             new Student() { RollNo = 1, Name = "One" },
             new Student() { RollNo = 2, Name = "Two" },
@@ -65,8 +65,6 @@ namespace WebAPI.Controllers
             {
                 return new {Error = "No Student Found"};
             }
-        }
-
-
+        }        
     }
 }
