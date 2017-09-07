@@ -1,0 +1,13 @@
+﻿@model WebAuth.Models.UserModel
+
+@{
+    ViewBag.Title = "Home";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Home</h2>
+
+<div>
+    @Html.LabelFor(u => u.UserName)
+    @Html.TextBoxFor(u => u.UserName)
+</div>

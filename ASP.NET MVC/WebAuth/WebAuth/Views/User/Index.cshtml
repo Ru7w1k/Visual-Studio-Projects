@@ -1,0 +1,39 @@
+﻿@model WebAuth.Models.UserModel
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+<div>
+    @using (Html.BeginForm("Login", "User", FormMethod.Post))
+    {
+
+        @Html.LabelFor(u => u.UserName)
+        @Html.TextBoxFor(u => u.UserName)
+
+        @Html.ValidationMessageFor(u => u.UserName)
+
+        <br />
+
+        @Html.LabelFor(u => u.Password)
+        @Html.TextBoxFor(u => u.Password)
+
+        @Html.ValidationMessageFor(u => u.Password)
+
+        <br />
+
+        @Html.LabelFor(u => u.Type)
+        @Html.EnumDropDownListFor(u => u.Type)
+
+        @Html.ValidationMessageFor(u => u.Type)
+
+        <input type="submit" name="submit" value="Log In" />
+    }
+
+    
+     
+    
+    
+</div>
