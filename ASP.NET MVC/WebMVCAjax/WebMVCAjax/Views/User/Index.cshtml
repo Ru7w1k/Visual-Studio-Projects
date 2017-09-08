@@ -1,0 +1,60 @@
+﻿@model WebMVCAjax.Models.UserBinding
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+    <script src="~/Scripts/jquery-3.1.1.js"></script>
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap-theme.css" rel="stylesheet" />
+</head>
+<body>
+    <div> 
+        <table>
+            <tr>
+                <td>@Html.LabelFor(u => u.user.UserCode)</td>
+                <td>@Html.TextBoxFor(u => u.user.UserCode)</td>
+            </tr>
+            <tr>
+                <td>@Html.LabelFor(u => u.user.UserName)</td>
+                <td>@Html.TextBoxFor(u => u.user.UserName, new { id = "username"})</td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <input class="btn btn-primary" type="button" onclick="SearchData()" name="Search" value="search" />
+                </td>
+            </tr>
+        </table>       
+    </div>
+
+    <div >
+        <table id="resultTable" class="table table-hover">            
+
+        </table>
+    </div>
+
+    <script type="text/javascript">
+        $.get("GetAllUsers", null, BindData);
+
+        function BindData(data) {
+            $("#resultTable").empty();
+            $("#resultTable").append("<tr><td> User Code </td><td> User Name </td></tr>")
+            for (var i = 0; i < data.length; i++) {
+                var row = "<tr> <td>" + data[i].UserCode + "</td> <td> " + data[i].UserName + "</td> </tr>";
+                $("#resultTable").append(row);
+            }
+        }
+
+        function SearchData() {
+            var uname = $("#username").val();
+            $.post("SearchUsers", { username : uname }, BindData);
+        }
+    </script>
+</body>
+</html>
