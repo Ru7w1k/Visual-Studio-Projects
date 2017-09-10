@@ -13,8 +13,6 @@ namespace WebAuth.Controllers
 {
     public class UserController : Controller
     {
-        public string ClaimsType { get; private set; }
-
         // GET: User
         [AllowAnonymous]
         public ActionResult Index()
@@ -29,8 +27,7 @@ namespace WebAuth.Controllers
 
             return View();
         }
-        
-
+     
         [HttpPost]
         [AllowAnonymous]
         public ActionResult Login(UserModel user)
@@ -46,7 +43,6 @@ namespace WebAuth.Controllers
 
                 if(users.Count() > 0)
                 {
-                    AuthenticationManager.Sign
                     return RedirectToAction("Home", "User", users.First());
                 }
             }
