@@ -15,15 +15,16 @@
     <link href="~/Content/bootstrap-theme.css" rel="stylesheet" />
 </head>
 <body>
-    <div> 
+    <div class="container-fluid"> 
+        <div>
         <table>
             <tr>
                 <td>@Html.LabelFor(u => u.user.UserCode)</td>
-                <td>@Html.TextBoxFor(u => u.user.UserCode)</td>
+                <td>@Html.TextBoxFor(u => u.user.UserCode, new { id = "username", @class = "form-control" })</td>
             </tr>
             <tr>
                 <td>@Html.LabelFor(u => u.user.UserName)</td>
-                <td>@Html.TextBoxFor(u => u.user.UserName, new { id = "username"})</td>
+                <td>@Html.TextBoxFor(u => u.user.UserName, new { id = "username", onkeyup="SearchData()", @class = "form-control"})</td>
             </tr>
             <tr>
                 <td colspan="2">
@@ -34,21 +35,23 @@
     </div>
 
     <div >
-        <table id="resultTable" class="table table-hover">            
-
+        <table id="resultTable" class="table table-responsive">   
         </table>
+        
     </div>
+ </div>
 
     <script type="text/javascript">
         $.get("GetAllUsers", null, BindData);
 
         function BindData(data) {
             $("#resultTable").empty();
-            $("#resultTable").append("<tr><td> User Code </td><td> User Name </td></tr>")
+            $("#resultTable").append("<tbody><tr><th> User Code </th><th> User Name </th></tr>");
             for (var i = 0; i < data.length; i++) {
                 var row = "<tr> <td>" + data[i].UserCode + "</td> <td> " + data[i].UserName + "</td> </tr>";
                 $("#resultTable").append(row);
             }
+            $("#resultTable").append("</tbody>");
         }
 
         function SearchData() {
