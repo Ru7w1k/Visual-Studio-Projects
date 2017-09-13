@@ -7,24 +7,26 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace ConEntityFramework
+namespace XorHub
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class Employee
+    public partial class Batch
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Employee()
+        public Batch()
         {
-            this.TestTables = new HashSet<TestTable>();
+            this.Assignments = new HashSet<Assignment>();
+            this.LoginInfoes = new HashSet<LoginInfo>();
         }
     
-        public int EmpId { get; set; }
+        public decimal BatchId { get; set; }
         public string Name { get; set; }
-        public decimal Salary { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<TestTable> TestTables { get; set; }
+        public virtual ICollection<Assignment> Assignments { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<LoginInfo> LoginInfoes { get; set; }
     }
 }

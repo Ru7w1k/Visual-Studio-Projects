@@ -12,12 +12,9 @@ DATABASE:
 
 	LoginInfo
 	PK Username varchar(10) [min: 4, [a-zA-Z0-9_], max: 10]
-		 Password varchar(15) [min: 8, SpecialChar + Alphanumeric, max: 15]
-		 Usertype varchar(1)  [(S)tudent, (T)eacher, (A)dmin]
-		 Status		boolean			[null for Student]
-
-	UserInfo
-	FK Username varchar(10)
+	 	 Passwd   varchar(15) [min: 8, SpecialChar + Alphanumeric, max: 15]
+	 	 Usertype varchar(1)  [(S)tudent, (T)eacher, (A)dmin]
+	 	 Stat		  bit			[null for Student]
 		 Name			varchar(20) [min: 3, [a-zA-Z ], max: 20]
 	FK BatchId  numeric
 
@@ -28,17 +25,17 @@ DATABASE:
 	Assignment
 	PK AssignmentId numeric
 		 Title				varchar(50)
-		 Date 				DateTime
+		 PostedDate		DateTime
 	FK TeacherId    varchar(10)
 		 Deadline     DateTime
 	FK BatchId      numeric
 		 Document     varchar(100)
 
-	Solutions
+	Solution
 	PK SolutionId    numeric
 	FK AssignmentId  numeric
 	FK Username			 varchar(10)
-		 Status				 varchar(1) [(A)pprove, (R)eject, (P)ending]
+		 Stat 				 varchar(1)  [(A)pprove, (R)eject, (P)ending]
 		 UploadedOn    DateTime
 		 Document			 varchar(100)
 		 Comment  		 varchar(200)
@@ -46,11 +43,18 @@ DATABASE:
 
 MVC Arch:
 
+	Models:
+		LoginInfo
+		UserInfo
+		Assignment
+		Solution
+		Batch
+
 	IndexController
 		Action: 
-			Login
-			Register
-			Logout
+			Login()
+			Register()
+			Logout()
 
 		View:
 			Index
@@ -59,10 +63,29 @@ MVC Arch:
 		Action:
 			Student()
 			Teacher()
-			Assignment(int AssignmentId)
+			Post(Assignment assignment) 
 
 		View:
 			Student
 			Teacher
+			
+	AssignmentController
+		Action:
+			Assignment(UserModel user) [View: StudentResponse | TeacherResponse]
+			Sumbit(Solution solution)
+			ViewResponses(Assignment assignmnet)
+			Response(Solution solution)
+			UpdateStatus(bool approve, Solution solution)
+
+		View:
+			StudentResponse
+			TeacherResponse
+			ViewResponses
+			Response
 
 
+
+
+
+-------------------------------
+ <embed src="pdfFiles/interfaces.pdf" width="600" height="500" alt="pdf" pluginspage="http://www.adobe.com/products/acrobat/readstep2.html">
