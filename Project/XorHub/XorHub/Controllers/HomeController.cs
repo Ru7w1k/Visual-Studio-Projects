@@ -13,12 +13,22 @@ namespace XorHub.Controllers
         {
             if (Session["username"] == null || Session["usertype"] == null)
             {
-                return RedirectToAction("Index", "Index", 1);
+                return RedirectToRoute(new
+                {
+                    controller = "Index",
+                    action = "Index",
+                    id = 1
+                });
             }
 
             if (!Session["usertype"].Equals("S"))
             {
-                return RedirectToAction("Index", "Index", 2);
+                return RedirectToRoute(new
+                {
+                    controller = "Index",
+                    action = "Index",
+                    id = 2
+                });
             }
 
             return View();
@@ -28,12 +38,24 @@ namespace XorHub.Controllers
         {
             if (Session["username"] == null || Session["usertype"] == null)
             {
-                return RedirectToAction("Index", "Index", 1);
+                return RedirectToRoute(new
+                {
+                    controller = "Index",
+                    action = "Index",
+                    id = 1
+                });
+                //return RedirectToAction("Index", "Index", 1);
             }
 
             if (!Session["usertype"].Equals("T"))
             {
-                return View("Index", "Index", 2);
+                return RedirectToRoute(new
+                {
+                    controller = "Index",
+                    action = "Index",
+                    id = 2
+                });
+                //return RedirectToAction("Index", "Index", 2);
             }
 
             return View();

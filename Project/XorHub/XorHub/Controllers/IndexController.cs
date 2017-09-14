@@ -83,6 +83,24 @@ namespace XorHub.Controllers
             return View("Index");
         }
 
+        public ActionResult Logout()
+        {
+            using (XorHubEntities db = new XorHubEntities())
+            {
+                List<SelectListItem> list = new List<SelectListItem>();
+                foreach (var item in db.Batches)
+                {
+                    list.Add(new SelectListItem { Text = item.Name, Value = item.BatchId.ToString() });
+                }
+
+                ViewData["BatchList"] = list;
+            }
+
+            Session["username"] = null;
+            Session["usertype"] = null;
+            return View("Index");
+        }
+
         [HttpPost]
         public ActionResult Login(LoginInfo model)
         {

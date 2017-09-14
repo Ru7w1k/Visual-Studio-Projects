@@ -24,14 +24,14 @@ namespace XorHub
     
         [Required]
         [Display(Name = "Username")]
-        [StringLength(10, MinimumLength = 4)]
-        [RegularExpression(@"^[a-zA-Z][a-zA-Z0-9_]$")]
+        [StringLength(10, MinimumLength = 4, ErrorMessage = "Username must be between 4 to 10 characters long")]
+        [RegularExpression(@"^[a-zA-Z]+[a-zA-Z0-9]*$", ErrorMessage = "Username must start with alphabet and it should not contain any special character")]
         public string Username { get; set; }
 
         [Required]
         [Display(Name = "Password")]
-        [StringLength(15, MinimumLength = 8)]
-        [RegularExpression(@"^([a-zA-Z0-9_]*[!@#$%^&*]+[a-zA-Z0-9_]*)+$")]
+        [StringLength(15, MinimumLength = 8, ErrorMessage = "Password must be between 8 to 15 characters long")]
+        [RegularExpression(@"^([a-zA-Z0-9]*[!@#$%^&_*]+[a-zA-Z0-9]*)+$", ErrorMessage = "Password must contain atleast one special character")]
         public string Passwd { get; set; }
 
         [Required]
