@@ -24,10 +24,14 @@ namespace XorHub
     
         [Required]
         [Display(Name = "Username")]
+        [StringLength(10, MinimumLength = 4)]
+        [RegularExpression(@"^[a-zA-Z][a-zA-Z0-9_]$")]
         public string Username { get; set; }
 
         [Required]
         [Display(Name = "Password")]
+        [StringLength(15, MinimumLength = 8)]
+        [RegularExpression(@"^([a-zA-Z0-9_]*[!@#$%^&*]+[a-zA-Z0-9_]*)+$")]
         public string Passwd { get; set; }
 
         [Required]
@@ -37,7 +41,7 @@ namespace XorHub
         public bool Stat { get; set; }
 
         [Required]
-        [Display(Name = "User Name")]
+        [Display(Name = "Name")]
         public string Name { get; set; }
 
         public Nullable<decimal> BatchId { get; set; }

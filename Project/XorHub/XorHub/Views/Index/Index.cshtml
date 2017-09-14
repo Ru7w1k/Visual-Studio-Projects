@@ -1,5 +1,4 @@
-﻿
-@model XorHub.LoginInfo
+﻿@model XorHub.LoginInfo
 
 @{
     ViewBag.Title = "Index";
@@ -61,32 +60,71 @@ div.tab button.active {
                 <button class="tablinks" onclick="openTab(event, 'Signup')">Signup</button>
             </div>
 
-            <div id="Login" class="tabcontent">
-                @using (Html.BeginForm("Login", "Index", FormMethod.Post))
-                {
-                    <br />
-                    @Html.LabelFor(u => u.Username)
-                    @Html.TextBoxFor(u => u.Username)
-                    <br />
-                    <br />
-                    @Html.LabelFor(u => u.Passwd)
-                    @Html.TextBoxFor(u => u.Passwd)
-                    <br />
-                    <br />
-                    <input type="submit" value="Login" />
-                }                
+            <div>
+                @ViewBag.Message
             </div>
+
+            <div id="Login" class="tabcontent">
+    @using (Html.BeginForm("Login", "Index", FormMethod.Post))
+    {
+        <table cellpadding="10">
+
+            <tr>
+                <td>
+                    @Html.LabelFor(u => u.Username) 
+                </td>
+                <td>
+                    @Html.TextBoxFor(u => u.Username) 
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>
+                    @Html.ValidationMessageFor(u => u.Username)
+                </td>                        
+            </tr>
+            <tr>
+                <td>
+                    @Html.LabelFor(u => u.Passwd)
+                </td>
+                <td>
+                    @Html.TextBoxFor(u => u.Passwd)
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>
+                    @Html.ValidationMessageFor(u => u.Passwd)
+                </td>
+            </tr>
+            <tr>
+                <td colspan="3">
+                    <input type="submit" value="Login" />
+                </td>
+            </tr>
+                </table>
+                    }
+    </div>
 
             <div id="Signup" class="tabcontent">
                 <br />
+@using (Html.BeginForm("Register", "Index", FormMethod.Post))
+{
 
                 <table cellpadding="10">
+
                     <tr>
                         <td>
                             @Html.LabelFor(u => u.Name)
                         </td>
                         <td>
                             @Html.TextBoxFor(u => u.Name)
+                        </td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td>
+                            @Html.ValidationMessageFor(u => u.Name)
                         </td>
                     </tr>
                     <tr>
@@ -97,7 +135,12 @@ div.tab button.active {
                         <td>
                             @Html.TextBoxFor(u => u.Username)
                         </td>
-                        
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td>
+                            @Html.ValidationMessageFor(u => u.Username)
+                        </td>
                     </tr>
                     <tr>
                         <td>
@@ -106,6 +149,12 @@ div.tab button.active {
                         </td>
                         <td>
                             @Html.PasswordFor(u => u.Passwd)
+                        </td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td>
+                            @Html.ValidationMessageFor(u => u.Passwd)
                         </td>
                     </tr>
                     <tr>
@@ -119,18 +168,23 @@ div.tab button.active {
                                     new SelectListItem() { Text = "Teacher", Value = "T"}
                                 })
                         </td>
+                        <td>
+                        </td>
                     </tr>
                     <tr>
                         <td>
-                            @Html.LabelFor(u => u.Batch.Name)
+                            @Html.Label("Batch")
                         </td>
                         <td>
-                            @Html.DropDownList("BatchName", (IEnumerable<SelectListItem>)ViewData["BatchList"])
+                            @Html.DropDownList("BatchId", (IEnumerable<SelectListItem>)ViewData["BatchList"])
                         </td>
+                        <td></td>
                     </tr>
                 </table>
+
                 <br />
                 <input type="submit" value="Signup" />
+}
             </div>
         </div>
 </center>

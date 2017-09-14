@@ -1,26 +1,21 @@
 USE XorHub
 
-CREATE TABLE LoginInfo (
-	Username varchar(10) primary key,
-	Passwd varchar(15) not null,
-	Usertype varchar(1) not null,
-	Stat bit not null
-)
-
 CREATE TABLE Batch (
 	BatchId numeric primary key,
 	Name varchar(10) not null
 )
 
-INSERT INTO Batch VALUES (101, 'Fresh2k17')
-INSERT INTO Batch VALUES (102, 'Fresh2k18')
-
-CREATE TABLE UserInfo (
-	UserInfoId numeric primary key,
-	Username varchar(10) foreign key references LoginInfo(Username),
+CREATE TABLE LoginInfo (
+	Username varchar(10) primary key,
+	Passwd varchar(15) not null,
+	Usertype varchar(1) not null,
+	Stat bit not null,
 	Name varchar(20) not null,
 	BatchId numeric foreign key references Batch(BatchId)
 )
+
+INSERT INTO Batch VALUES (101, 'Fresh2k17')
+INSERT INTO Batch VALUES (102, 'Fresh2k18')
 
 CREATE TABLE Assignment (
 	AssignmentId numeric primary key,
