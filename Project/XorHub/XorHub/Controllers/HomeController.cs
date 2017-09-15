@@ -21,17 +21,53 @@ namespace XorHub.Controllers
                 });
             }
 
-            if (!Session["usertype"].Equals("S"))
-            {
-                return RedirectToRoute(new
-                {
-                    controller = "Index",
-                    action = "Index",
-                    id = 2
-                });
+            switch (Session["usertype"].ToString())
+            {           
+                case "T":
+                    return RedirectToRoute(new
+                    {
+                        controller = "Home",
+                        action = "Teacher",
+                        id = 2
+                    });
+
+                case "A":
+                    return RedirectToRoute(new
+                    {
+                        controller = "Home",
+                        action = "Admin",
+                        id = 2
+                    });
+
+                case "S":
+                default:
+                    break;
             }
 
+            List<Assignment> assignmentList = new List<Assignment>();
+            using (XorHubEntities db = new XorHubEntities())
+            {
+                var userName = Session["username"].ToString();
+                var userBatchId = db.LoginInfoes.Where(u => u.Username.Equals(userName)).FirstOrDefault().BatchId;
+                assignmentList = db.Assignments.Where(a => a.BatchId == userBatchId).ToList();
+            }
+
+            ViewBag.Assignments = assignmentList;
+
             return View();
+        }
+
+        public ActionResult GetAssignments()
+        {
+            List<Assignment> assignmentList = new List<Assignment>();
+            using (XorHubEntities db = new XorHubEntities())
+            {
+                var userName = Session["username"].ToString();
+                var userBatchId = db.LoginInfoes.Where(u => u.Username.Equals(userName)).FirstOrDefault().BatchId;
+                assignmentList = db.Assignments.Where(a => a.BatchId == userBatchId).ToList();
+            }
+
+            return Json(assignmentList, JsonRequestBehavior.AllowGet);
         }
 
         public ActionResult Teacher()

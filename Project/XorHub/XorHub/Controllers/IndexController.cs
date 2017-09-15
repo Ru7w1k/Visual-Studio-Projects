@@ -141,12 +141,14 @@ namespace XorHub.Controllers
                 {
                     Session["username"] = model.Username;
                     Session["usertype"] = model.Usertype;
+                    ViewBag.username = model.Username;
                     return RedirectToAction("Teacher", "home");
                 }
             }
 
             Session["username"] = model.Username;
             Session["usertype"] = model.Usertype;
+            ViewBag.username = model.Username;
             return RedirectToAction("Student", "home");
         }
     }

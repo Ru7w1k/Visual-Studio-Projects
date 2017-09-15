@@ -24,7 +24,12 @@
                     <li>@Html.ActionLink("About", "About", "Home")</li>
                     <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
                 </ul>
+                <ul class="nav navbar-nav" style="float:right">
+                    <li><a>@Session["username"]</a></li>
+                </ul>
+
             </div>
+            
         </div>
     </div>
     <div class="container body-content">
