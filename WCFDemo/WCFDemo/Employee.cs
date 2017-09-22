@@ -27,13 +27,15 @@ namespace WCFDemo
         public string CompanyName;
 
         [MessageBodyMember]
-        public Employee Emp;
+        public List<Employee> Emp;
 
         [MessageBodyMember]
         public Department Dept;
     }
 
     [DataContract]
+    [KnownType(typeof(Admin))]
+    [KnownType(typeof(Manager))]
     public class Employee
     {
         private int m_Id;
@@ -67,6 +69,32 @@ namespace WCFDemo
         {
             get { return m_Salary; }
             set { m_Salary = value; }
+        }
+    }
+
+    [DataContract]
+    public class Admin : Employee
+    {
+        private string a_Value;
+
+        [DataMember]
+        public string Value
+        {
+            get { return a_Value; }
+            set { a_Value = value; }
+        }
+    }
+
+    [DataContract]
+    public class Manager : Employee
+    {
+        private string m_Value;
+
+        [DataMember]
+        public string Value
+        {
+            get { return m_Value; }
+            set { m_Value = value; }
         }
     }
 

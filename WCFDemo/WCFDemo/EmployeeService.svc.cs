@@ -14,11 +14,31 @@ namespace WCFDemo
         {
             if (request.Key == "Admin")
             {
-                Employee emp = new Employee();
-                emp.Age = 25;
-                emp.Id = 1;
-                emp.Salary = 50000;
-                emp.Name = "EmpOne";
+                //Employee emp = new Employee();
+                //emp.Age = 25;
+                //emp.Id = 1;
+                //emp.Salary = 50000;
+                //emp.Name = "EmpOne";
+
+                List<Employee> emp = new List<Employee>();
+                emp.Add(new Admin()
+                {
+                    Id = 1,
+                    Name = "admin",
+                    Age = 25,
+                    Salary = 50000,
+                    Value = "test"
+                });
+
+                emp.Add(new Manager()
+                {
+                    Id = 2,
+                    Name = "manager",
+                    Age = 35,
+                    Salary = 65000,
+                    Value = "testtest"
+                });
+
 
                 Department dept = new Department();
                 dept.Id = 101;
