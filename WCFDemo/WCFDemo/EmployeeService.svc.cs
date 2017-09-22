@@ -23,7 +23,13 @@ namespace WCFDemo
                 Department dept = new Department();
                 dept.Id = 101;
                 dept.Name = "R&D";
-                
+
+                Logger.Log(LogType.Error, "This is error message!");
+
+                Logger.Log(LogType.Debug, "This is debug message!");
+
+                Logger.Log(LogType.Info, "This is information message!");
+
                 return new EmployeeResponse() { CompanyName = "Xoriant", Emp = emp, Dept = dept};
             }
             else
