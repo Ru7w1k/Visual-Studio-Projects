@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WCFFirst", "WCFFirst\WCFFirst.csproj", "{1D7F15A0-C5E1-4697-98E8-0120168BC632}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConWCFTest", "ConsoleApplication1\ConWCFTest.csproj", "{EF657C32-C173-4EA9-AF7D-5CDE523E2307}"
+	ProjectSection(ProjectDependencies) = postProject
+		{1D7F15A0-C5E1-4697-98E8-0120168BC632} = {1D7F15A0-C5E1-4697-98E8-0120168BC632}
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{1D7F15A0-C5E1-4697-98E8-0120168BC632}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1D7F15A0-C5E1-4697-98E8-0120168BC632}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1D7F15A0-C5E1-4697-98E8-0120168BC632}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1D7F15A0-C5E1-4697-98E8-0120168BC632}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EF657C32-C173-4EA9-AF7D-5CDE523E2307}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EF657C32-C173-4EA9-AF7D-5CDE523E2307}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EF657C32-C173-4EA9-AF7D-5CDE523E2307}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EF657C32-C173-4EA9-AF7D-5CDE523E2307}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
