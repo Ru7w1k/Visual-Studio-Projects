@@ -38,8 +38,7 @@ namespace WCFDemo
                     Salary = 65000,
                     Value = "testtest"
                 });
-
-
+                
                 Department dept = new Department();
                 dept.Id = 101;
                 dept.Name = "R&D";

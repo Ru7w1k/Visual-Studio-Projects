@@ -11,7 +11,7 @@ namespace ConWCFDemo
     {
         static void Main(string[] args)
         {
-            Employee emp;
+            Employee[] emp;
             Department dept;
 
             var client = new EmployeeServiceClient();

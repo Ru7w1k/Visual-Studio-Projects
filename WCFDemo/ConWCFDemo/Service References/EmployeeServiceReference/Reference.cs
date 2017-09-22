@@ -78,6 +78,8 @@ namespace ConWCFDemo.EmployeeServiceReference {
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
     [System.Runtime.Serialization.DataContractAttribute(Name="Employee", Namespace="http://schemas.datacontract.org/2004/07/WCFDemo")]
     [System.SerializableAttribute()]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(ConWCFDemo.EmployeeServiceReference.Admin))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(ConWCFDemo.EmployeeServiceReference.Manager))]
     public partial class Employee : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
         
         [System.NonSerializedAttribute()]
@@ -167,6 +169,52 @@ namespace ConWCFDemo.EmployeeServiceReference {
         }
     }
     
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="Admin", Namespace="http://schemas.datacontract.org/2004/07/WCFDemo")]
+    [System.SerializableAttribute()]
+    public partial class Admin : ConWCFDemo.EmployeeServiceReference.Employee {
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string ValueField;
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Value {
+            get {
+                return this.ValueField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.ValueField, value) != true)) {
+                    this.ValueField = value;
+                    this.RaisePropertyChanged("Value");
+                }
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="Manager", Namespace="http://schemas.datacontract.org/2004/07/WCFDemo")]
+    [System.SerializableAttribute()]
+    public partial class Manager : ConWCFDemo.EmployeeServiceReference.Employee {
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string ValueField;
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Value {
+            get {
+                return this.ValueField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.ValueField, value) != true)) {
+                    this.ValueField = value;
+                    this.RaisePropertyChanged("Value");
+                }
+            }
+        }
+    }
+    
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="EmployeeServiceReference.IEmployeeService")]
     public interface IEmployeeService {
@@ -215,12 +263,12 @@ namespace ConWCFDemo.EmployeeServiceReference {
         public ConWCFDemo.EmployeeServiceReference.Department Dept;
         
         [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=1)]
-        public ConWCFDemo.EmployeeServiceReference.Employee Emp;
+        public ConWCFDemo.EmployeeServiceReference.Employee[] Emp;
         
         public EmployeeResponse() {
         }
         
-        public EmployeeResponse(string CompanyName, ConWCFDemo.EmployeeServiceReference.Department Dept, ConWCFDemo.EmployeeServiceReference.Employee Emp) {
+        public EmployeeResponse(string CompanyName, ConWCFDemo.EmployeeServiceReference.Department Dept, ConWCFDemo.EmployeeServiceReference.Employee[] Emp) {
             this.CompanyName = CompanyName;
             this.Dept = Dept;
             this.Emp = Emp;
@@ -259,7 +307,7 @@ namespace ConWCFDemo.EmployeeServiceReference {
             return base.Channel.GetEmployeeDetails(request);
         }
         
-        public string GetEmployeeDetails(string Key, int DeptId, int Id, out ConWCFDemo.EmployeeServiceReference.Department Dept, out ConWCFDemo.EmployeeServiceReference.Employee Emp) {
+        public string GetEmployeeDetails(string Key, int DeptId, int Id, out ConWCFDemo.EmployeeServiceReference.Department Dept, out ConWCFDemo.EmployeeServiceReference.Employee[] Emp) {
             ConWCFDemo.EmployeeServiceReference.EmployeeRequest inValue = new ConWCFDemo.EmployeeServiceReference.EmployeeRequest();
             inValue.Key = Key;
             inValue.DeptId = DeptId;
