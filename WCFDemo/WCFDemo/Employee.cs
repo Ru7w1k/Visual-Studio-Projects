@@ -15,6 +15,9 @@ namespace WCFDemo
 
         [MessageBodyMember]
         public int Id;
+
+        [MessageBodyMember]
+        public int DeptId;
     }
 
     [MessageContract]
@@ -25,6 +28,9 @@ namespace WCFDemo
 
         [MessageBodyMember]
         public Employee Emp;
+
+        [MessageBodyMember]
+        public Department Dept;
     }
 
     [DataContract]
@@ -61,6 +67,27 @@ namespace WCFDemo
         {
             get { return m_Salary; }
             set { m_Salary = value; }
+        }
+    }
+
+    [DataContract]
+    public class Department
+    {
+        private int m_DeptId;
+        private string m_DeptName;
+
+        [DataMember]
+        public string Name
+        {
+            get { return m_DeptName; }
+            set { m_DeptName = value; }
+        }
+
+        [DataMember]
+        public int Id
+        {
+            get { return m_DeptId; }
+            set { m_DeptId = value; }
         }
     }
 }

@@ -8,7 +8,6 @@ using System.Text;
 
 namespace WCFDemo
 {
-
     public class EmployeeService : IEmployeeService
     {
         public EmployeeResponse GetEmployeeDetails(EmployeeRequest request)
@@ -21,7 +20,11 @@ namespace WCFDemo
                 emp.Salary = 50000;
                 emp.Name = "EmpOne";
 
-                return new EmployeeResponse() { CompanyName = "Xoriant", Emp = emp };
+                Department dept = new Department();
+                dept.Id = 101;
+                dept.Name = "R&D";
+                
+                return new EmployeeResponse() { CompanyName = "Xoriant", Emp = emp, Dept = dept};
             }
             else
             {
