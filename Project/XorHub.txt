@@ -14,9 +14,9 @@ DATABASE:
 	PK Username varchar(10) [min: 4, [a-zA-Z0-9_], max: 10]
 	 	 Passwd   varchar(15) [min: 8, SpecialChar + Alphanumeric, max: 15]
 	 	 Usertype varchar(1)  [(S)tudent, (T)eacher, (A)dmin]
-	 	 Stat		  bit			[null for Student]
-		 Name			varchar(20) [min: 3, [a-zA-Z ], max: 20]
-	FK BatchId  numeric
+	 	 Stat		  bit			    [null for Student]
+		 Name			varchar(20) [min: 3, [a-zA-Z ], max:2 0]
+	FK BatchId  numeric	
 
 	Batch
 	PK BatchId numeric

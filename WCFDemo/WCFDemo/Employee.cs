@@ -36,7 +36,7 @@ namespace WCFDemo
     [DataContract]
     [KnownType(typeof(Admin))]
     [KnownType(typeof(Manager))]
-    public class Employee
+    public class Employee 
     {
         private int m_Id;
         private string m_Name;
@@ -70,6 +70,7 @@ namespace WCFDemo
             get { return m_Salary; }
             set { m_Salary = value; }
         }
+        
     }
 
     [DataContract]

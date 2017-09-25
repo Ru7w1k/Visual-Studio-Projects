@@ -14,5 +14,4 @@ namespace WCFDemo
         [OperationContract]
         EmployeeResponse GetEmployeeDetails(EmployeeRequest request);
     }
-
 }
