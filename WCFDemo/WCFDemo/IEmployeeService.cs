@@ -13,5 +13,8 @@ namespace WCFDemo
     {
         [OperationContract]
         EmployeeResponse GetEmployeeDetails(EmployeeRequest request);
+
+        [OperationContract]
+        EmployeeResponse GetEmployeeDetailsById(EmployeeRequest request);
     }
 }

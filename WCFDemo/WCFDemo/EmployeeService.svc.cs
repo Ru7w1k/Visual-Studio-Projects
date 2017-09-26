@@ -56,5 +56,10 @@ namespace WCFDemo
                 return new EmployeeResponse();
             }
         }
+
+        public EmployeeResponse GetEmployeeDetailsById(EmployeeRequest request)
+        {
+            return new EmployeeResponse() { CompanyName = "TEST", Dept = new Department(), Emp = new List<Employee>() { new Employee() { Id = 101, Age = 25, Name = "Emp101", Salary = 50000 } } };
+        }
     }
 }
