@@ -25,12 +25,12 @@
                 </td>
             </tr>
         </thead>
-        <tbody>
-            @foreach (Student student in Model)
+        <tbody id="data">
+            @*@foreach (Student student in Model)
             {
                 <tr>
                     <td>
-                        @student.RollNo
+                        students[i].RollNo
                     </td>
                     <td>
                         @student.Name
@@ -45,8 +45,40 @@
                         @Html.ActionLink("Delete", "Delete", new { id = student.RollNo })
                     </td>
                 </tr>
-            }
+            }*@
         </tbody>
     </table>
+    <script src="~/Scripts/jquery-1.10.2.js"></script>
+    <script type="text/javascript">
+
+        loadStudents();
+
+        function loadStudents() {
+            $.get("http://localhost:52255/api/students", null, BindData, "JSON");
+        }
+
+        function BindData(students) {
+            $("#data").empty();
+            for (var i = 0 ; i < students.length ; i++) {
+                $("#data").append("<tr><td>" + students[i].RollNo + "</td><td>" + students[i].Name + "</td><td>" + students[i].Marks + "</td><td> <a href='\\home\\edit\\" + students[i].RollNo + "'>Edit</a></td><td><a href='#' onclick='DeleteStudent(" + students[i].RollNo + "); return false;'>Delete</a></td></tr>");
+            }
+        }
+
+        function DeleteStudent(id) {
+            $.ajax({
+                url: "http://localhost:52255/api/students/" + id,
+                type: 'DELETE',
+                success: function (data) {
+                    alert(data);
+                    loadStudents();
+                },
+                error: function (data) {
+                    alert(data);
+                }
+            });
+        }
+    </script>
 
 </div>
+
+

@@ -17,28 +17,47 @@
 
     @if (Model != null)
     {
-        using (Html.BeginForm("Save", "Home", FormMethod.Post))
-        {
+        //using (Html.BeginForm("Save", "Home", FormMethod.Post))
+        //{
             <div class="form-group">
                 @Html.LabelFor(m => m.RollNo)
-                @Html.TextBoxFor(s => s.RollNo, new { @class = "form-control", @readonly = "readonly" })
+                @Html.TextBoxFor(s => s.RollNo, new { @class = "form-control", @readonly = "readonly", id = "rollNo" })
             </div>
 
             <div class="form-group">
                 @Html.LabelFor(m => m.Name)
-                @Html.TextBoxFor(s => s.Name, new { @class = "form-control" })
+                @Html.TextBoxFor(s => s.Name, new { @class = "form-control", id = "name" })
             </div>
 
             <div class="form-group">
                 @Html.LabelFor(m => m.Marks)
-                @Html.TextBoxFor(s => s.Marks, new { @class = "form-control" })
+                @Html.TextBoxFor(s => s.Marks, new { @class = "form-control", id = "marks" })
             </div>
             
-            <input type="submit" class="btn btn-primary" value="Save" name="save" />
-        }
+            <input type="button" class="btn btn-primary" value="Save" name="save" onclick="saveStudent()" />
+        //}
     }
     else
     {
         <span> No Student Found! </span>
     }
 </div>
+
+<script type="text/javascript">
+
+    function saveStudent() {
+        $.ajax({
+            url: "http://localhost:52255/api/students/" + $("#rollNo").val(),
+            type: 'PUT',
+            data: { Name: $("#name").val(), Marks: $("#marks").val()},
+            success: function (result) {
+                alert(result);
+            },
+            error: function (result) {
+                console.log(result);
+                alert(result);
+            }
+        });
+    }
+
+</script>

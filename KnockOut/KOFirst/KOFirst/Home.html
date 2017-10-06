@@ -4,40 +4,50 @@
         <title>KO Demo</title>
         <meta charset="utf-8" />
         
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
         <script src="scripts/jquery-3.2.1.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" type="text/javascript"></script>
         <script src="scripts/knockout-3.4.2.js"></script>
-        <script src="scripts/sammy-0.7.5.js"></script>
         <script src="default.js"></script>
         
     </head>
 
     <body>
-        <table>
-            <thead>
-                <tr><th>Name</th><th>Marks</th><th>Grade</th><!--<th></th>--><th></th></tr>
-            </thead>
-            <tbody data-bind="foreach: list">
-                <tr>
-                    <td data-bind="text: $data.name() "></td>    
-                    <td data-bind="text: $data.marks()"></td>    
-                    <td data-bind="text: $data.grade()"></td>
-                    <td><a data-bind="click: $root.editSample" href="#">Edit</a></td>
-                    <td><a data-bind="click: $root.removeSample" href="#">Delete</a></td>
-                </tr>
-            </tbody>
-        </table>
-        
-        <input type="text" id="name" />
-        <input type="text" id="marks" />        
-        <input type="button" data-bind="click: addSample" value="Add" id="btnAdd"/>
+        <div class="container">
+            <div>
+                <h4>Students Data</h4>
+                <table class="table table-hover">
+                    <thead>
+                        <tr><th>Roll No</th><th>Name</th><th>Marks</th><th></th><th></th></tr>
+                    </thead>
+                    <tbody data-bind="foreach: list">
+                        <tr>
+                            <td data-bind="text: $data.rollno() "></td>
+                            <td data-bind="text: $data.name()"></td>
+                            <td data-bind="text: $data.marks()"></td>
+                            <td><a data-bind="click: $root.editStudent" href="#">Edit</a></td>
+                            <td><a data-bind="click: $root.removeStudent" href="#">Delete</a></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
 
-        <div data-bind="visible: setEditMode()">
-            <input type="text" data-bind="value: setSample().name , valueUpdate:'afterkeydown'" readonly="readonly" />
-            <input type="text" data-bind="value: setSample().marks, valueUpdate:'afterkeydown'" />
-            <input type="text" data-bind="value: setSample().grade, valueUpdate:'afterkeydown'" readonly="readonly" />
+            <div data-bind="visible: !setEditMode()">
+                <h4>Insert Student</h4>
+                Roll No: <input class="form-control" type="text" id="rollno" /> <br />
+                Name:    <input class="form-control" type="text" id="name" /> <br />
+                Marks:   <input class="form-control" type="text" id="marks" /> <br />
+                <input class="btn btn-primary" type="button" data-bind="click: addStudent" value="Add" id="btnAdd" />
+            </div>
 
-            <input type="button" value="Save" data-bind="click: saveSample" />
+            <div data-bind="visible: setEditMode()">
+                <h4>Edit Student</h4>
+                Roll No: <input class="form-control" type="text" data-bind="value: setStudent().rollno, valueUpdate:'afterkeydown'" readonly="readonly" /> <br />
+                Name: <input class="form-control" type="text" data-bind="value: setStudent().name , valueUpdate:'afterkeydown'" /> <br />
+                Marks: <input class="form-control" type="text" data-bind="value: setStudent().marks, valueUpdate:'afterkeydown'" /> <br />
+
+                <input class="btn btn-primary" type="button" value="Save" data-bind="click: saveStudent" />
+            </div>
         </div>
-
     </body>
 </html>
