@@ -16,16 +16,16 @@
         <div class="container">
             <div class="row">
                 <div>
-                    <h4>Students Data</h4>
+                    <div class="jumbotron"><h2>Students Data</h2><input class="btn btn-primary" style="float: right" type="button" value="Add" data-bind="click: popup"></div>
                     <table class="table table-hover">
                         <thead>
                             <tr><th>Roll No</th><th>Name</th><th>Marks</th><th></th><th></th></tr>
                         </thead>
                         <tbody data-bind="foreach: list">
                             <tr>
-                                <td data-bind="text: $data.rollno() "></td>
-                                <td data-bind="text: $data.name()"></td>
-                                <td data-bind="text: $data.marks()"></td>
+                                <td data-bind="text: $data.RollNo "></td>
+                                <td data-bind="text: $data.Name"></td>
+                                <td data-bind="text: $data.Marks"></td>
                                 <td><a data-bind="click: $root.editStudent" href="#">Edit</a></td>
                                 <td><a data-bind="click: $root.removeStudent" href="#">Delete</a></td>
                             </tr>
@@ -33,22 +33,15 @@
                     </table>
                 </div>
 
-                <div data-bind="fadeVisible: !setEditMode()">
+                <!--<div data-bind="fadeVisible: !setEditMode()">
                     <h4>Insert Student</h4>
                     Roll No: <input class="form-control" type="text" id="rollno" /> <br />
                     Name:    <input class="form-control" type="text" id="name" /> <br />
                     Marks:   <input class="form-control" type="text" id="marks" /> <br />
-                    <input class="btn btn-primary" type="button" data-bind="click: addStudent" value="Add" id="btnAdd" />
-                </div>
+                    <input class="btn btn-primary" type="button" data-bind="click: setEditMode() ? saveStudent : addStudent" value="Add" id="btnAdd" />
+                </div>-->
 
-                <div data-bind="fadeVisible: setEditMode()">
-                    <h4>Edit Student</h4>
-                    Roll No: <input class="form-control" type="text" data-bind="value: setStudent().rollno, valueUpdate:'afterkeydown'" readonly="readonly" /> <br />
-                    Name: <input class="form-control" type="text" data-bind="value: setStudent().name , valueUpdate:'afterkeydown'" /> <br />
-                    Marks: <input class="form-control" type="text" data-bind="value: setStudent().marks, valueUpdate:'afterkeydown'" /> <br />
-
-                    <input class="btn btn-primary" type="button" value="Save" data-bind="click: saveStudent" />
-                </div>
+               
             </div>
         </div>
     </body>

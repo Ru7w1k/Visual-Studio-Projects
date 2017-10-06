@@ -60,27 +60,30 @@ namespace MVCBasicCRUD.Models
             return _Student;
         }
 
-        public static bool InsertStudent(Student st)
+        public static int InsertStudent(Student st)
         {
+            int rollNo = 0;
             _Command = new SqlCommand(
-                string.Format("INSERT INTO Students VALUES ({0}, '{1}', {2})", st.RollNo, st.Name, st.Marks), _Connection);
+                string.Format("INSERT INTO Students VALUES ('{0}', {1})", st.Name, st.Marks), _Connection);
             int res = 0;
 
             try
             {
                 _Connection.Open();
                 res = _Command.ExecuteNonQuery();
-                
+                _Command = new SqlCommand("SELECT MAX(RollNo) FROM Students", _Connection);
+                rollNo = (int)_Command.ExecuteScalar();
             }
             catch(Exception e)
             {
-                return false;
+                return 0;
             }
             finally
             {
                 _Connection.Close();                
             }
-            return true;
+
+            return rollNo;
         }
 
         public static bool UpdateStudent(Student st)

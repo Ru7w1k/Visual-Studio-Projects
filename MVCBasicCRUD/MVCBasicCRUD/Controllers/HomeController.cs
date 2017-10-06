@@ -76,7 +76,7 @@ namespace MVCBasicCRUD.Controllers
             if (ModelState.IsValid)
             {
 
-                if (StudentContext.InsertStudent(student))
+                if (StudentContext.InsertStudent(student) != 0)
                 {
                     ViewBag.Message = "Student Record Inserted!";
                     return View("Create", student);

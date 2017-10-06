@@ -21,7 +21,7 @@ namespace StudentAPI.Controllers
             return StudentContext.StudentByRollNo(id);
         }
 
-        public bool Post([FromBody]Student student)
+        public int Post([FromBody]Student student)
         {
             return StudentContext.InsertStudent(student);
         }
