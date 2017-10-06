@@ -111,14 +111,20 @@ $(document).ready(function () {
             var name = $('#name').val();
             var marks = $('#marks').val();
 
-            if (rollno === undefined || isNaN(rollno))
+            if (rollno === undefined || isNaN(rollno)) {
+                alert('Invalid Roll No');
                 return;
+            }
 
-            if (name === undefined || name === "")
+            if (name === undefined || name === "") {
+                alert('Invalid Roll No');
                 return;
+            }
 
-            if (isNaN(marks) || marks < 0 || marks > 100)
+            if (isNaN(marks) || marks < 0 || marks > 100) {
+                alert('Invalid Roll No');
                 return;
+            }
 
             $.ajax({
                 url: "http://localhost:52255/api/students/",
@@ -146,7 +152,7 @@ $(document).ready(function () {
                 url: "http://localhost:52255/api/students/" + student.rollno(),
                 type: 'DELETE',
                 success: function (data) {
-                    alert(data);
+                    alert("Success");
                     self.clearList();
                     self.getStudents();
                 },
@@ -162,7 +168,7 @@ $(document).ready(function () {
                 type: 'PUT',
                 data: { Name: self.setStudent().name(), Marks: self.setStudent().marks() },
                 success: function (result) {
-                    alert(result);
+                    alert("Success");
                     self.setEditMode(false);
                     self.clearList();
                     self.getStudents();
