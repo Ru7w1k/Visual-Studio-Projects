@@ -48,7 +48,7 @@ $(document).ready(function () {
             var marks = $('#marks').val();
 
             if (name === undefined || name === "") {
-                alert('Invalid Name: '  + name);
+                alert('Invalid Name: ' + name);
                 return;
             }
 
@@ -76,7 +76,7 @@ $(document).ready(function () {
                     console.log(result);
                     alert(result);
                 }
-            });            
+            });
         };
 
         self.editStudent = function (student) {
@@ -114,12 +114,7 @@ $(document).ready(function () {
                     alert(result);
                 }
             });
-            
         };
-
-        self.popup = function () {
-            window.open('create.html', 'create', 'height=400, width=400');
-        }
     }
 
     var vm = new StudentViewModel()

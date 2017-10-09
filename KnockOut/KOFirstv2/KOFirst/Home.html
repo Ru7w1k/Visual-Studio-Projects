@@ -1,48 +1,61 @@
 ﻿<!DOCTYPE html>
 <html>
-    <head>
-        <title>KO Demo</title>
-        <meta charset="utf-8" />
-        
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
-        <script src="scripts/jquery-3.2.1.js"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" type="text/javascript"></script>
-        <script src="scripts/knockout-3.4.2.js"></script>
-        <script src="default.js"></script>
-        
-    </head>
+<head>
+    <title>KO Demo</title>
+    <meta charset="utf-8" />
 
-    <body>
-        <div class="container">
-            <div class="row">
-                <div>
-                    <div class="jumbotron"><h2>Students Data</h2><input class="btn btn-primary" style="float: right" type="button" value="Add" data-bind="click: popup"></div>
-                    <table class="table table-hover">
-                        <thead>
-                            <tr><th>Roll No</th><th>Name</th><th>Marks</th><th></th><th></th></tr>
-                        </thead>
-                        <tbody data-bind="foreach: list">
-                            <tr>
-                                <td data-bind="text: $data.RollNo "></td>
-                                <td data-bind="text: $data.Name"></td>
-                                <td data-bind="text: $data.Marks"></td>
-                                <td><a data-bind="click: $root.editStudent" href="#">Edit</a></td>
-                                <td><a data-bind="click: $root.removeStudent" href="#">Delete</a></td>
-                            </tr>
-                        </tbody>
-                    </table>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+    <script src="scripts/jquery-3.2.1.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" type="text/javascript"></script>
+    <script src="scripts/knockout-3.4.2.js"></script>
+    <script src="default.js"></script>
+
+</head>
+
+<body>
+    <div class="container">
+        <div class="row">
+            <div>
+                <div class="jumbotron"><h2>Students Data</h2><input class="btn btn-primary" style="float: right" type="button" value="Add" data-toggle="modal" data-target="#inputModal" /></div>
+                <table class="table table-hover">
+                    <thead>
+                        <tr><th>Roll No</th><th>Name</th><th>Marks</th><th></th><th></th></tr>
+                    </thead>
+                    <tbody data-bind="foreach: list">
+                        <tr>
+                            <td data-bind="text: $data.RollNo "></td>
+                            <td data-bind="text: $data.Name"></td>
+                            <td data-bind="text: $data.Marks"></td>
+                            <td><a data-bind="click: $root.editStudent" data-toggle="modal" data-target="#inputModal" href="#">Edit</a></td>
+                            <td><a data-bind="click: $root.removeStudent" href="#">Delete</a></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div id="inputModal" class="modal fade" role="dialog">
+                <div class="modal-dialog">
+
+                    <div class="modal-content">
+
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            <h4 class="modal-title" data-bind="visible: setEditMode()">Edit Student</h4>
+                            <h4 class="modal-title" data-bind="visible: !setEditMode()">Add Student</h4>
+                        </div>
+
+                        <div class="modal-body">
+                            Roll No: <input class="form-control" type="text" data-bind="value: setStudent().RollNo, valueUpdate:'afterkeydown'" readonly="readonly" id="rollno" /> <br />
+                            Name: <input class="form-control" type="text" data-bind="value: setStudent().Name , valueUpdate:'afterkeydown'" id="name" /> <br />
+                            Marks: <input class="form-control" type="text" data-bind="value: setStudent().Marks, valueUpdate:'afterkeydown'" id="marks" /> <br />
+                        </div>
+                        <div class="modal-footer">
+                            <input class="btn btn-primary" type="button" value="Save" data-bind="click: setEditMode() ? saveStudent : addStudent" data-dismiss="modal" />
+                        </div>
+                    </div>
                 </div>
-
-                <!--<div data-bind="fadeVisible: !setEditMode()">
-                    <h4>Insert Student</h4>
-                    Roll No: <input class="form-control" type="text" id="rollno" /> <br />
-                    Name:    <input class="form-control" type="text" id="name" /> <br />
-                    Marks:   <input class="form-control" type="text" id="marks" /> <br />
-                    <input class="btn btn-primary" type="button" data-bind="click: setEditMode() ? saveStudent : addStudent" value="Add" id="btnAdd" />
-                </div>-->
-
-               
             </div>
         </div>
-    </body>
+    </div>
+</body>
 </html>
