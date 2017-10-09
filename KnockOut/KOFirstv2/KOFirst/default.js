@@ -28,10 +28,10 @@ $(document).ready(function () {
         self.list = ko.observableArray([]);
         self.setEditMode = ko.observable(false);
         self.setStudent = ko.observable({});
-
+        
         self.clearList = function () {
             self.list([]);
-        }
+        };
 
         self.getStudents = function () {
             $.get("http://localhost:52255/api/students",
@@ -99,6 +99,11 @@ $(document).ready(function () {
             });
         };
 
+        self.resetEditMode = function () {
+            self.setEditMode(false);
+            self.setStudent({});
+        }
+
         self.saveStudent = function () {
             $.ajax({
                 url: "http://localhost:52255/api/students/" + self.setStudent().RollNo,
@@ -106,8 +111,8 @@ $(document).ready(function () {
                 data: { Name: self.setStudent().Name, Marks: self.setStudent().Marks },
                 success: function (result) {
                     alert("Success");
-                    self.setEditMode(false);
                     self.getStudents();
+
                 },
                 error: function (result) {
                     console.log(result);

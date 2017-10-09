@@ -30,8 +30,8 @@ namespace WebAuth.Models
         public UserType Type { get; set; }
     }
 
-    public class UserModelContext : System.Data.Entity.DbContext
+    public class UserModelContext : DbContext
     {
-        public System.Data.Entity.DbSet<UserModel> Users { get; set; }
+        public DbSet<UserModel> Users { get; set; }
     }
 }
