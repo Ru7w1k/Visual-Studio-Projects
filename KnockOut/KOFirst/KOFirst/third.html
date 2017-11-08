@@ -1,0 +1,48 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+	<meta charset="utf-8" />
+</head>
+<body>
+    Unit Price<input data-bind="valueUpdate:'afterkeydown', value: unitPrice" />  <br />
+    Units <input data-bind="valueUpdate:'afterkeydown', value: units" />      <br />
+    Total Price <input data-bind="valueUpdate:'afterkeydown', value: totalPrice" /> <br />
+
+
+    <script src="scripts/knockout-3.4.2.js"></script>
+    <script type="text/javascript">
+
+        var vm = function () {
+            var self = this;
+
+            self.unitPrice = ko.observable(10);
+            self.units = ko.observable(10);
+
+            self.select1 = ko.observableArray([]);
+            self.select2 = ko.observableArray([]);
+            self.select3 = ko.observableArray([]);
+            
+            // Computed Property with read and write definition 
+
+            self.totalPrice = ko.computed({
+                read: function () {
+                    console.log('read called!');
+                    return self.unitPrice() * self.units();
+                },
+
+                write: function (value) {
+                    console.log('write called!');
+                    self.unitPrice(value / self.units());
+                },
+
+                owner: vm
+            });
+        };
+
+        ko.applyBindings(vm);
+
+    </script>
+
+</body>
+</html>

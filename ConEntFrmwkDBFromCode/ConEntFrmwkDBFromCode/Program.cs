@@ -13,12 +13,21 @@ namespace ConEntFrmwkDBFromCode
         {
             using (var DeptObj = new DepartmentContext())
             {
-                Console.WriteLine("Add Department");
-                var deptObj = new Department { Id = 2, Name = "IT", Location = "Pune", AddURL="test.com" };
-                DeptObj.Departments.Add(deptObj);
+                //Console.WriteLine("Add Department");
+                //var deptObj = new Department { Id = 2, Name = "IT", Location = "Pune", AddURL="test.com" };
+                //DeptObj.Departments.Add(deptObj);
+                //DeptObj.SaveChanges();
+
+                //Console.WriteLine("Added Department");
+                List<Department> depts = DeptObj.Departments.ToList();
+
+                var dept = DeptObj.Departments.Where(d => d.Id == 2).FirstOrDefault();
+
+                dept = new Department { Name="Modified"};
+                //dept.Name = "Updated!";
                 DeptObj.SaveChanges();
 
-                Console.WriteLine("Added Department");
+                depts = DeptObj.Departments.ToList();
             }
 
             Console.ReadLine();

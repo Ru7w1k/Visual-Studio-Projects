@@ -1,16 +1,17 @@
 ﻿/// <reference path="D:\Visual Studio Projects\KnockOut\KOFirst\KOFirst\scripts/knockout-3.4.2.debug.js" />
 
 $(document).ready(function () {
-    ko.bindingHandlers.fadeVisible = {
-        init: function (element, valueAccessor) {
-            var shouldDisplay = valueAccessor();
-            $(element).toggle(shouldDisplay);
-        },
-        update: function (element, valueAccessor) {
-            var shouldDisplay = valueAccessor();
-            shouldDisplay ? $(element).fadeIn() : $(element).fadeOut();
-        }
-    };
+
+    //ko.bindingHandlers.fadeVisible = {
+    //    init: function (element, valueAccessor) {
+    //        var shouldDisplay = valueAccessor();
+    //        $(element).toggle(shouldDisplay);
+    //    },
+    //    update: function (element, valueAccessor) {
+    //        var shouldDisplay = valueAccessor();
+    //        shouldDisplay ? $(element).fadeIn() : $(element).fadeOut();
+    //    }
+    //};
 
     // Student Model
     function Student(rollno, name, marks) {
@@ -28,9 +29,33 @@ $(document).ready(function () {
         self.list = ko.observableArray([]);
         self.setEditMode = ko.observable(false);
         self.setStudent = ko.observable({});
+        self.searchText = ko.observable("");
+
+        self.list.subscribe(function (data) {
+            if (data.length == 0) {
+                $('#status').show();
+            }
+            else {
+                $('#status').hide();
+            }
+        });
         
-        self.clearList = function () {
-            self.list([]);
+        self.searchStudents = function () {
+            var value = self.searchText();
+            var newList = [];
+            for (var i = 0; i < self._list.length; i++) {
+                if (self._list[i].Name.includes(value) || self._list[i].RollNo.toString().includes(value)) {
+                    newList.push(self._list[i]);
+                }
+            }
+            $('#btnClear').prop('disabled', false);
+            self.list(newList); 
+        };
+
+        self.clearSearch = function () {
+            $('#btnClear').prop('disabled', true);
+            self.searchText("");
+            self.list(self._list);
         };
 
         self.getStudents = function () {
@@ -38,6 +63,7 @@ $(document).ready(function () {
                 null,
                 function (students) {
                     self.list(students);
+                    self._list = students;
                     console.log(students);
                 },
                 "JSON");
@@ -92,6 +118,8 @@ $(document).ready(function () {
                 success: function (data) {
                     alert("Success");
                     self.getStudents();
+                    self.searchText("");
+                    $('#btnClear').prop('disabled', true);
                 },
                 error: function (data) {
                     alert(data);
@@ -112,7 +140,6 @@ $(document).ready(function () {
                 success: function (result) {
                     alert("Success");
                     self.getStudents();
-
                 },
                 error: function (result) {
                     console.log(result);
@@ -125,5 +152,4 @@ $(document).ready(function () {
     var vm = new StudentViewModel()
     vm.getStudents();
     ko.applyBindings(vm);
-
 });

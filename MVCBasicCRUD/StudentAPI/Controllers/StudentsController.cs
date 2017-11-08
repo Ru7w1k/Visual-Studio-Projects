@@ -1,10 +1,6 @@
-﻿using System;
+﻿using MVCBasicCRUD.Models;
 using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Net.Http;
 using System.Web.Http;
-using MVCBasicCRUD.Models;
 using System.Web.Http.Results;
 
 namespace StudentAPI.Controllers
@@ -19,6 +15,11 @@ namespace StudentAPI.Controllers
         public Student Get(int id)
         {
             return StudentContext.StudentByRollNo(id);
+        }
+
+        public JsonResult<List<Student>> Get(string text)
+        {
+            return Json(StudentContext.Search(text));
         }
 
         public int Post(Student student)
