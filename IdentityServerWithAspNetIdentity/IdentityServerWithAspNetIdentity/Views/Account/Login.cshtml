@@ -1,0 +1,120 @@
+﻿@using System.Collections.Generic
+@using System.Linq
+@using Microsoft.AspNetCore.Http
+@using Microsoft.AspNetCore.Http.Authentication
+@model LoginViewModel
+@inject SignInManager<ApplicationUser> SignInManager
+
+@{
+    ViewData["Title"] = "Log in";
+}
+
+<style>
+    .inputbox {
+        position: relative;
+        z-index: 1;
+        background-color: transparent;
+        margin-top: 10px;
+        width: 270px;
+        margin-bottom: 0;
+        height: 30px;
+        line-height: 30px;
+        border: 1px solid #BFBFBF;
+        color: #34495e;
+        font-family: 'pt_sansregular', sans-serif;
+        font-size: 14px;
+        padding: 2px 0 3px 5px;
+        text-indent: 1px;
+        display: inline-block;
+    }
+
+    .errors {
+        width: auto;
+        font-size: 14px;
+        position: relative;
+        width: 220px;
+        font-weight: 400;
+        font-family: 'pt_sansregular', sans-serif;
+        font-size: 12px;
+        color: #B61211;
+        text-align: center;
+        line-height: 21px;
+        left: 0px;
+        word-wrap: break-word;
+    }
+
+    .errors > ul {
+        list-style-type:none
+    }
+</style>
+
+
+<div style="margin-top:10px" class="ss-login">
+    <div class="modal-header hide"><h2></h2></div>
+    <div class="modal-content" id="modalContentLayout">
+        <div class="modal-body">
+            <div class="ss-left">
+
+                <form asp-route-returnurl="@ViewData["ReturnUrl"]" method="post">
+
+                    <div class="ss-title">Login</div>
+                    <div class="ss-content">
+                        <div asp-validation-summary="All" class="errors"></div>
+                        <fieldset>
+                            <label for="username" class="ss-label-fix">Username</label>
+                            <div class="special-field">
+                                <input id="username" placeholder="Username" asp-for="Email" class="inputbox data_field input-xlarge placeholder" type="text" aria-label="Username" tabindex="1" required="">
+                                <label class="special-label" for="username">Username</label>
+                            </div>
+
+
+                            <label for="password" class="ss-label-fix">Password</label>
+                            <div class="special-field">
+                                <input id="password" type="password" placeholder="Password" asp-for="Password" autocomplete="off" class="inputbox data_field input-xlarge placeholder" aria-label="Password" tabindex="2" required="">
+                                <label class="special-label" for="password">Password</label>
+
+
+                                <span class="block">
+                                    <button type="submit" class="btn btn-large btn-primary mar-top40" tabindex="4">Log In</button>
+                                    <br /> <br /> <br />
+                                    <a asp-action="Register" class="help-link" asp-route-returnurl="@ViewData["ReturnUrl"]">Register as a new user?</a><br />
+                                    <a class="help-link" asp-action="ForgotPassword">Forgot your password?</a>
+                                </span>
+
+                            </div>
+                        </fieldset>
+                    </div>
+
+
+                    <!-- -->
+                    @*<input asp-for="Email" class="data_field input-xlarge placeholder" placeholder="Username" />
+                            <span asp-validation-for="Email" class="special-label"></span>
+                            <a asp-action="Register" class="help-link" asp-route-returnurl="@ViewData["ReturnUrl"]">Register as a new user?</a>
+                        </div>
+                        <div class="special-field">
+                            <input asp-for="Password" class="data_field input-xlarge placeholder" placeholder="Password" />
+                            <span asp-validation-for="Password" class="special-label"></span>
+                            <a class="help-link" asp-action="ForgotPassword">Forgot your password?</a>
+                        </div>
+                        <div class="form-group">
+                            <div class="checkbox">
+                                <label asp-for="RememberMe">
+                                    <input asp-for="RememberMe" />
+                                    @Html.DisplayNameFor(m => m.RememberMe)
+                                </label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-default">Log in</button>
+                        </div>*@
+
+                </form>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @await Html.PartialAsync("_ValidationScriptsPartial")
+}

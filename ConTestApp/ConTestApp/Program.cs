@@ -101,6 +101,9 @@ namespace ConTestApp
         static void Main(string[] args)
         {
 
+            var x = Math.Sinh(10);
+            var y = Math.Asin(10);
+
             Test2 t = new Test2();
             t.Print();
 
@@ -289,6 +292,8 @@ namespace ConTestApp
     {
         public static int MainTest()
         {
+
+
             Console.WriteLine("\nReflection.MethodInfo");
             // Create MyClass object
             MyClass myClassObj = new MyClass();
