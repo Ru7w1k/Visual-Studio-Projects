@@ -1,0 +1,175 @@
+﻿@{
+    ViewBag.Title = "Alert";
+}
+
+<br /><br>
+
+<div class="row">
+    <div class="col-md-2"></div>
+
+    <div class="col-md-8">
+        <div class="panel panel-default">
+            <div class="panel-footer">
+                <span class="label label-default"> Status</span>
+            </div>
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-md-6" style="align-content:center">
+                        <div id="chartDiv" style="width: 400px; height: 300px;">
+                            loading chart..
+                        </div>
+                    </div>
+                    <div class="col-md-6" style="align-content:center">
+
+                        <label class="label label-primary">Response</label>
+                        <ul class="list-group" data-bind="foreach: report">
+                            <li class="list-group-item" data-bind="click: changeSelectedStatus">
+                                <span data-bind="text: statusMap[$data.stat]"></span>
+                                <span class="badge" data-bind="text: $data.count"></span>
+                            </li>
+                        </ul>
+
+                        <span class="label label-primary" data-bind="text: selectedStatus"></span>
+                        <ul class="list-group" data-bind="foreach: selectedUsers">
+                            <li class="list-group-item" data-bind="text: $data.uname"></li>
+                        </ul>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-2"></div>
+</div>
+
+<!-- google chart API -->
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<script>
+
+    var statusMap = {
+        U: "Understood",
+        I: "More Information Required",
+        N: "No Response"
+    }
+
+    function status(uname, stat) {
+        return {
+            uname: ko.observable(uname),
+            stat: ko.observable(stat)
+        };
+    };
+
+    function userStatus() {
+
+        var self = this;
+        statusList = ko.observableArray([]);
+        selectedUsers = ko.observableArray([]);
+        selectedStatus = ko.observable();
+
+        var report = ko.observableArray([
+            { stat: 'U', count: ko.observable() },
+            { stat: 'I', count: ko.observable() },
+            { stat: 'N', count: ko.observable() }
+        ]);
+        
+        changeSelectedStatus = function (status) {
+            console.log('Change Selected Status', status);
+            selectedStatus(statusMap[status.stat]);
+            var tmp = [];
+            var users = statusList();
+            for (var i = 0 ; i < users.length ; i++) {
+                if(users[i].stat() == status.stat)
+                    tmp.push(users[i]);
+            };
+            console.log(tmp);
+            selectedUsers(tmp);
+        }
+        // retrive data from server //
+        getData = function () {
+
+            $.get("http://localhost:63015/api/UserStat",
+                null,
+                function (users) {
+                    var tmp = [];
+
+                    for (var i = 0 ; i < users.length ; i++) {
+                        tmp.push(status(users[i].Username, users[i].Stat));
+                    };
+
+                    statusList(tmp);
+                    updateReport();
+                    drawChart();
+                },
+                "JSON");
+
+        };
+
+        updateReport = function () {
+            var U = 0, I = 0, N = 0;
+            var tmp = statusList();
+            for (var i in tmp) {
+
+                if (tmp[i].stat() === 'U')
+                    U += 1;
+                else if (tmp[i].stat() === 'I')
+                    I += 1;
+                else if (tmp[i].stat() === 'N')
+                    N += 1;
+            }
+
+            report()[0].count(U);
+            report()[1].count(I);
+            report()[2].count(N);
+            
+        };
+
+        return {
+            statusList: statusList,
+            statusMap: statusMap,
+            getData: getData,
+            report: report
+        };
+    };
+
+    var vm = new userStatus();
+    vm.getData();
+    ko.applyBindings(vm);
+
+    // signalR methods
+    var statusHub = $.connection.statusHub;
+    statusHub.client.getData = function () {
+        vm.getData();
+    };
+    $.connection.hub.start()
+
+    // google pie chart
+    google.charts.load("current", { packages: ["corechart"] });
+    google.charts.setOnLoadCallback(drawChart);
+    function drawChart() {
+
+        // check if loaded
+        if (google.visualization === undefined)
+            return;
+
+        var dtObj = ko.toJS(vm.report());
+        var dt = [
+            ['Status', 'Count']
+        ];
+
+        for (var j = 0 ; j < dtObj.length ; j++) {
+            dt.push([statusMap[dtObj[j].stat], dtObj[j].count]);
+        }
+        
+        var data = google.visualization.arrayToDataTable(dt);
+
+        var options = {
+            title: 'User Status',
+            pieHole: 0.4,
+        };
+
+        var chart = new google.visualization.PieChart(document.getElementById('chartDiv'));
+        chart.draw(data, options);
+    }
+
+</script>
