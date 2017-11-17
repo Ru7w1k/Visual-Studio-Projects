@@ -14,21 +14,23 @@ namespace IdentityServerWithAspNetIdentity.Services
     {
         public Task SendEmailAsync(string email, string subject, string message)
         {
-            try
-            {
-                MailMessage mailMessage = new MailMessage("timerservice123@gmail.com", email, subject, message);
-                mailMessage.IsBodyHtml = true;
-                mailMessage.BodyEncoding = Encoding.UTF8;
-                mailMessage.SubjectEncoding = Encoding.UTF8;
+            MailMessage mailMessage = new MailMessage("timerservice123@gmail.com", email, subject, message);
+            mailMessage.IsBodyHtml = true;
+            mailMessage.BodyEncoding = Encoding.UTF8;
+            mailMessage.SubjectEncoding = Encoding.UTF8;
 
-                SmtpClient smtpClient = new SmtpClient("smtp.gmail.com", 25);
-                smtpClient.EnableSsl = true;
-                smtpClient.Credentials = new NetworkCredential("timerservice123@gmail.com", "nilesh123");
-                smtpClient.Send(mailMessage);
-            }
-            catch (Exception e)
-            {
-            }
+            SmtpClient smtpClient = new SmtpClient("smtp.gmail.com", 587);
+            smtpClient.EnableSsl = true;
+            smtpClient.UseDefaultCredentials = false;
+            smtpClient.Credentials = new NetworkCredential("timerservice123@gmail.com", "nilesh123");
+
+            //ServicePointManager.SecurityProtocol =
+            //    SecurityProtocolType.Ssl3
+            //    | SecurityProtocolType.Tls12
+            //    | SecurityProtocolType.Tls11
+            //    | SecurityProtocolType.Tls;
+
+            smtpClient.Send(mailMessage);
 
             return Task.CompletedTask;
         }

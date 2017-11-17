@@ -13,6 +13,7 @@ using Microsoft.Extensions.Options;
 using IdentityServerWithAspNetIdentity.Models;
 using IdentityServerWithAspNetIdentity.Models.AccountViewModels;
 using IdentityServerWithAspNetIdentity.Services;
+using Microsoft.AspNetCore.Http;
 
 namespace IdentityServerWithAspNetIdentity.Controllers
 {
@@ -371,8 +372,17 @@ namespace IdentityServerWithAspNetIdentity.Controllers
                 // visit https://go.microsoft.com/fwlink/?LinkID=532713
                 var code = await _userManager.GeneratePasswordResetTokenAsync(user);
                 var callbackUrl = Url.ResetPasswordCallbackLink(user.Id, code, Request.Scheme);
-                await _emailSender.SendEmailAsync(model.Email, "Reset Password",
-                   $"Please reset your password by clicking here: <a href='{callbackUrl}'>link</a>");
+
+                try
+                {
+                    await _emailSender.SendEmailAsync(model.Email, "Reset Password",
+                       $"Please reset your password by clicking here: <a href='{callbackUrl}'>link</a>");
+                }
+                catch(Exception ex)
+                {
+                    return new JsonResult(ex.Message);
+                }
+
                 return RedirectToAction(nameof(ForgotPasswordConfirmation));
             }
 
