@@ -22,7 +22,7 @@ namespace IdentityServerWithAspNetIdentity.Services
             SmtpClient smtpClient = new SmtpClient("smtp.gmail.com", 587);
             smtpClient.EnableSsl = true;
             smtpClient.UseDefaultCredentials = false;
-            smtpClient.Credentials = new NetworkCredential("timerservice123@gmail.com", "nilesh123");
+            smtpClient.Credentials = new NetworkCredential("timerservice123@gmail.com", password);
 
             //ServicePointManager.SecurityProtocol =
             //    SecurityProtocolType.Ssl3
