@@ -21,11 +21,13 @@ namespace ConMultiThreadParallelAssignments
             switch(opt)
             {
                 case 1:
+                    // foreground thread will be continue its execution, if all other threads are terminated..
                     Console.WriteLine("Starting Foreground Thread!");
                     _threadF.Start();
                     break;
 
                 case 2:
+                    // background thread will be terminated, if all foregrund thread are finished!
                     Console.WriteLine("Starting Backgroud Thread!");
                     _threadB.Start();
                     break;

@@ -8,10 +8,13 @@ namespace LinqWOLinq
     {
         public static IEnumerable<EmployeePersonal> FilterEmployees(List<Employee> employees)
         {
-            //return Select<Employee, EmployeePersonal>(Where<Employee>(employees, emp => emp.Age > 26),
-            //    item => new EmployeePersonal() { Age = item.Age, Email = item.Email, Name = item.Name, Phone = item.Phone });
-            // return employees.Where(emp => emp.Age > 25).Select(item => new EmployeePersonal() { Age = item.Age, Email = item.Email, Name = item.Name, Phone = item.Phone });
-            // return from emp in employees where emp.Age > 25 select new EmployeePersonal() { Age = emp.Age, Email = emp.Email, Name = emp.Name, Phone = emp.Phone };
+            return Select<Employee, EmployeePersonal>(Where<Employee>(employees, emp => emp.Age > 26),
+               item => new EmployeePersonal() { Age = item.Age, Email = item.Email, Name = item.Name, Phone = item.Phone });
+
+            return employees.Where(emp => emp.Age > 25).Select(item => new EmployeePersonal() { Age = item.Age, Email = item.Email, Name = item.Name, Phone = item.Phone });
+            
+            return from emp in employees where emp.Age > 25 select new EmployeePersonal() { Age = emp.Age, Email = emp.Email, Name = emp.Name, Phone = emp.Phone };
+
             return from emp in employees where emp.Age > 25 select new EmployeePersonal() { Age = emp.Age, Email = emp.Email, Name = emp.Name, Phone = emp.Phone };
         }
 

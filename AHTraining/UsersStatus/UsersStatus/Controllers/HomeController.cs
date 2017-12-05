@@ -11,6 +11,6 @@ namespace UsersStatus.Controllers
         public ActionResult Index()
         {
             return View();
-        }        
+        }
     }
 }

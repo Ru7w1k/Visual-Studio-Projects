@@ -4,6 +4,12 @@ using System.Linq;
 using System.Web;
 using Microsoft.AspNet.SignalR;
 using UserStatus.Observer;
+using System.Xml.Linq;
+using System.Xml;
+using System.IO;
+using Newtonsoft.Json;
+using static ServiceBrokerListener.Domain.SqlDependencyEx;
+using ServiceBrokerListener.Domain;
 
 namespace UsersStatus.Hubs
 {
@@ -17,9 +23,10 @@ namespace UsersStatus.Hubs
             _Observer.AddListener(UpdateStatus);
         }
 
-        public void UpdateStatus(string notificationType, string data)
+        public void UpdateStatus(List<TableChangedEventArgs> data)
         {
-            Clients.All.getData();
+            if(data.Any())
+                Clients.All.getData(data);
         }
     }
 }

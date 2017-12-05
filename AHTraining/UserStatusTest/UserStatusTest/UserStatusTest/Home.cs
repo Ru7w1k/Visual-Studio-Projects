@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Newtonsoft.Json;
+using System.Diagnostics;
 
 namespace UserStatusTest
 {
@@ -16,6 +17,7 @@ namespace UserStatusTest
     {
         private HttpClient _Client = null;
         private List<User> _Users = new List<User>();
+        private string _SelectedStatus = "";
 
         public Home()
         {
@@ -25,6 +27,13 @@ namespace UserStatusTest
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            //for (int i = 20941; i < 50000; i++)
+            //{
+            //    var res = _Client.PostAsync(@"http://localhost:63015/api/UserStat",
+            //                    new StringContent(JsonConvert.SerializeObject(new User { Username = "User"+ i, Stat = null}), Encoding.UTF8, "application/json"));
+            //    var tmp = res.Result;
+            //}
+
             GetData();
         }
 
@@ -46,16 +55,19 @@ namespace UserStatusTest
             if (radU.Checked)
             {
                 _Users[idx].Stat = "U";
+                _SelectedStatus = "U";
                 return;
             }
             if (radI.Checked)
             {
                 _Users[idx].Stat = "I";
+                _SelectedStatus = "I";
                 return;
             }
             if (radN.Checked)
             {
                 _Users[idx].Stat = "N";
+                _SelectedStatus = "N";
                 return;
             }
         }
@@ -93,6 +105,36 @@ namespace UserStatusTest
                 new StringContent(JsonConvert.SerializeObject(user), Encoding.UTF8, "application/json"));
             var tmp = res.Result;
             GetData();
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnBulkSend_Click(object sender, EventArgs e)
+        {
+            int count = 0;
+            if (Int32.TryParse(txtBulkCount.Text, out count))
+            {
+                lblStatus.Text = "Starting Upload..";
+                Stopwatch sw = new Stopwatch();
+                sw.Start();
+
+                //for(int i = 0; i < count; i++)
+                var parRes = Parallel.For(0, count, i =>
+                {
+                    var res = _Client.PutAsync(@"http://localhost:63015/api/UserStat",
+                        new StringContent(
+                            JsonConvert.SerializeObject(
+                                new User { Username = "User" + i, Stat = _SelectedStatus }),
+                            Encoding.UTF8, "application/json"));
+                    var tmp = res.Result;
+                });
+
+                sw.Stop();
+                lblStatus.Text = string.Format("Elapsed: {0}, Time: {1}", sw.Elapsed, DateTime.Now.ToLongTimeString());
+            }
         }
     }
 }

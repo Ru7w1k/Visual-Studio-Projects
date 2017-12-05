@@ -25,5 +25,10 @@ namespace ConThreading
                 x = x + ".";
             }
         }
+
+        public static int Function2()
+        {
+            return 100;
+        }
     }
 }

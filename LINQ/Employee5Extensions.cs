@@ -8,7 +8,9 @@ namespace LinqWOLinq
     {
         public static IEnumerable<EmployeePersonal> FilterEmployees(List<Employee> employees)
         {
-            return Select(Where(employees, new Func<Employee, bool>(WhereClause)), new Func<Employee, EmployeePersonal>(SelectClause));
+            return Select(
+                Where(employees, new Func<Employee, bool>(WhereClause)), 
+                new Func<Employee, EmployeePersonal>(SelectClause));
         }
 
         private static IEnumerable<Employee> Where(IEnumerable<Employee> source, Func<Employee, bool> whereClause)
