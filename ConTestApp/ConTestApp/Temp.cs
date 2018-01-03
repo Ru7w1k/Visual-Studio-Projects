@@ -8,7 +8,7 @@ namespace ConTestApp
 {
     class Temp
     {
-        public static void Main(string[] args)
+        public static void Main()
         {
             Console.WriteLine("Size of Int {0}", sizeof(int));
 
