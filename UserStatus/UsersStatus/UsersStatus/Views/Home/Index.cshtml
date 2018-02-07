@@ -1,0 +1,302 @@
+﻿@{
+    ViewBag.Title = "Alert";
+}
+
+<br /><br>
+
+<div class="row">
+    <div class="col-md-1"></div>
+
+    <div class="col-md-10">
+        <div class="panel panel-default">
+            <div class="panel-footer">
+                <span class="label label-default"> Status</span>
+            </div>
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-md-12" style="align-content:center">
+                        <center>
+                            <div id="chartDiv" style="width: 800px; height:500px;">
+                                loading chart..
+                            </div>
+                        </center>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12" style="align-content:center">
+
+                        <label class="label label-primary">Response</label>
+                        <ul class="list-group" data-bind="foreach: report">
+                            <li class="list-group-item" @*data-bind="click: changeSelectedStatus"*@>
+                                <span data-bind="text: statusMap[$data.stat]"></span>
+                                <span class="badge" data-bind="text: $data.count"></span>
+                            </li>
+                        </ul>
+
+                        @*<span class="label label-primary" data-bind="text: selectedStatus"></span>
+                        <ul class="list-group" data-bind="foreach: selectedUsers">
+                            <li class="list-group-item" data-bind="text: $data.uname"></li>
+                        </ul>*@
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-1"></div>
+</div>
+
+<!-- google chart API -->
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<script>
+
+    ko.bindingHandlers.textAnimate = {
+        init: function (elem, valueAccessor) {
+            $(elem).animateNumber({ number: ko.unwrap(valueAccessor()) });
+        },
+        update: function (elem, valueAccessor) {
+            $(elem).animateNumber({ number: ko.unwrap(valueAccessor()) });
+        }
+    }
+
+    var statusMap = {
+        U: "Understood",
+        I: "More Information Required",
+        N: "No Response",
+    }
+
+    function status(uname, stat) {
+        return {
+            uname: ko.observable(uname),
+            stat: ko.observable(stat)
+        };
+    };
+
+    function userStatus() {
+
+        var self = this;
+        statusList = ko.observableArray([]);
+        selectedUsers = ko.observableArray([]);
+        selectedStatus = ko.observable();
+
+        var report = ko.observableArray([
+            { stat: 'U', count: ko.observable() },
+            { stat: 'I', count: ko.observable() },
+            { stat: 'N', count: ko.observable() }
+        ]);
+        
+        //changeSelectedStatus = function (status) {
+        //    console.log('Change Selected Status', status);
+        //    selectedStatus(statusMap[status.stat]);
+        //    var tmp = [];
+        //    var users = statusList();
+        //    for (var i = 0 ; i < users.length ; i++) {
+        //        if(users[i].stat() == status.stat)
+        //            tmp.push(users[i]);
+        //    };
+        //    console.log(tmp);
+        //    selectedUsers(tmp);
+        //}
+        // retrive data from server //
+        getData = function () {
+
+            $.get("http://localhost:63015/api/UserStat",
+                null,
+                function (users) {
+                    var tmp = [];
+
+                    for (var i = 0; i < users.length; i++) {
+                        if (users[i].Stat == null || undefined)
+                            tmp.push(status(users[i].Username, "N"));
+                        else
+                            tmp.push(status(users[i].Username, users[i].Stat));
+                    };
+
+                    statusList(tmp);
+                    updateReport();
+                    statusList([]);
+                    drawChart();
+                },
+                "JSON");
+
+        };
+
+        updateReport = function () {
+            var U = 0, I = 0, N = 0;
+            var tmp = statusList();
+            for (var i in tmp) {
+
+                if (tmp[i].stat() === 'U')
+                    U += 1;
+                else if (tmp[i].stat() === 'I')
+                    I += 1;
+                else if (tmp[i].stat() === 'N')
+                    N += 1;
+            }
+
+            report()[0].count(U);
+            report()[1].count(I);
+            report()[2].count(N);
+            
+        };
+
+        isUpdated = ko.observable(false);
+
+        // update data from message received //
+        //updateData = function (uname, stat, pstat) {
+        updateData = function ( stat, pstat) {
+            //console.log('updateData', stat, pstat);
+            //var tmp = statusList();
+            var prevstat = 'N';
+            if (pstat == null || undefined)
+                prevstat = 'N';
+            else
+                prevstat = pstat;
+            //for (var i = 0; i < tmp.length; i++) {
+            //    if (tmp[i].uname() === uname) {
+            //        prevstat = tmp[i].stat();
+            //        tmp[i].stat(stat);
+            //    }
+            //};
+
+            //statusList(tmp);
+            //updateReport();
+
+            var cnt = '';
+
+            switch (prevstat) {
+                case 'U':
+                    cnt = report()[0].count();
+                    report()[0].count(cnt - 1);
+                    break;
+
+                case 'I':
+                    cnt = report()[1].count();
+                    report()[1].count(cnt - 1);
+                    break;
+
+                case 'N':
+                    cnt = report()[2].count();
+                    report()[2].count(cnt - 1);
+                    break;
+            }
+
+            switch (stat) {
+                case 'U':
+                    cnt = report()[0].count();
+                    report()[0].count(cnt + 1);
+                    break;
+
+                case 'I':
+                    cnt = report()[1].count();
+                    report()[1].count(cnt + 1);
+                    break;
+
+                case 'N':
+                    cnt = report()[2].count();
+                    report()[2].count(cnt + 1);
+                    break;
+            }
+
+            isUpdated(true);
+            //step = step + 1;
+            //if (step % 25 == 0) {
+            //    step = 0;
+            //    console.log('draw chart');
+            //    drawChart();
+            //}
+        };
+
+        return {
+            statusList: statusList,
+            statusMap: statusMap,
+            getData: getData,
+            report: report,
+            updateData: updateData,
+            isUpdated: isUpdated
+
+        };
+    };
+
+    var vm = new userStatus();
+
+    // signalR methods
+    var statusHub = $.connection.statusHub;
+    statusHub.client.getData = function (data) {
+        console.log('data', data);
+        for (var i = 0; i < data.length; i++) {
+            vm.updateData(data[i].Data.root.inserted.row.Stat,
+                data[i].Data.root.deleted.row.Stat);
+        }
+        console.log('Time: ', Date.now());
+        
+    };
+    $.connection.hub.start()
+    // SignalR End //
+
+    // pubnub //
+    //var pubnub = new PubNub({
+    //    subscribeKey: "sub-c-b95bc812-ca8e-11e7-ad03-722f9b71d63a",
+    //    publishKey: "pub-c-9e3c5ea8-aa06-4040-b054-9a5e783c3a30",
+    //    ssl: true
+    //});
+
+    //pubnub.subscribe({
+    //    channels: ['channel1']
+    //});
+
+    //pubnub.addListener({
+    //    message: function (data) {
+    //        console.log('data', data);
+    //    for (var i = 0; i < data.length; i++) {
+    //        vm.updateData(data[i].Data.root.inserted.row.Stat,
+    //            data[i].Data.root.deleted.row.Stat);
+    //    }
+    //    console.log('Time: ', Date.now());
+    //    }
+    //});
+    // pubnub end //
+
+    // google pie chart
+    google.charts.load("current", { packages: ["corechart"] });
+    google.charts.setOnLoadCallback(start);
+
+    function start() {
+        vm.getData();
+        ko.applyBindings(vm);
+    }
+
+    setInterval(function (vm) {
+        if (vm.isUpdated()) {
+            vm.isUpdated(false);
+            drawChart();
+        }
+    },2500,vm);
+
+    function drawChart() {
+
+        // check if loaded
+        //if (google.visualization === undefined)
+        //    return;
+        console.log('drawing chart..');
+        var dtObj = ko.toJS(vm.report());
+        var dt = [
+            ['Status', 'Count']
+        ];
+
+        for (var j = 0; j < dtObj.length; j++) {
+            dt.push([statusMap[dtObj[j].stat], dtObj[j].count]);
+        }
+        
+        var data = google.visualization.arrayToDataTable(dt);
+
+        var options = {
+            pieHole: 0,
+        };
+
+        var chart = new google.visualization.PieChart(document.getElementById('chartDiv'));
+        chart.draw(data, options);
+    }
+
+</script>

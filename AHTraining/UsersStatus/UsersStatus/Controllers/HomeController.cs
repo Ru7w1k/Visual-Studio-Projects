@@ -12,5 +12,10 @@ namespace UsersStatus.Controllers
         {
             return View();
         }
+
+        public ActionResult OtherIndex()
+        {
+            return View();
+        }
     }
 }

@@ -47,10 +47,9 @@ namespace UserStatus.Observer
 
         private void _Timer_Elapsed(object sender, ElapsedEventArgs e)
         {
-
-            if (_TableArgs.Any())
+            lock (_TableArgs)
             {
-                lock (_TableArgs)
+                if (_TableArgs.Any())
                 {
                     var data = _TableArgs.ToList();
                     count += data.Count;
